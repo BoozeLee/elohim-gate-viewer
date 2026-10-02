@@ -1,0 +1,265 @@
+/* Verdicts are the loudest thing on screen and everything else is quiet, so a
+   red gate is visible from across the room and a green one is not worth
+   looking at twice. Colour is never the only signal: every verdict also carries
+   its word, so this reads correctly in greyscale and for a colour-blind reader. */
+:root {
+  --pass: #2f7d4f;
+  --fail: #b3261e;
+  --unlocated: #8a5a00;
+  --unknown: #5a5a5a;
+  --edge: #d8d8d8;
+  --ink: #1c1c1c;
+  --muted: #6a6a6a;
+  --surface: #fbfbfa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pass: #6cba86;
+    --fail: #ef8079;
+    --unlocated: #d9a441;
+    --unknown: #9a9a9a;
+    --edge: #333;
+    --ink: #e8e8e6;
+    --muted: #9a9a98;
+    --surface: #161615;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+code,
+pre {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+  font-size: 0.86em;
+}
+
+.bar {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--edge);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
+
+.bar h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.provenance {
+  margin: 0 0 0 auto;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.panel {
+  padding: 20px;
+}
+
+.hint {
+  color: var(--muted);
+}
+
+button {
+  font: inherit;
+  padding: 6px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Verdict block. The border colour is the summary; the word carries it too. */
+.verdict {
+  border: 2px solid var(--unknown);
+  border-left-width: 6px;
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+}
+
+.verdict.pass {
+  border-color: var(--pass);
+}
+.verdict.fail {
+  border-color: var(--fail);
+}
+.verdict.unlocated {
+  border-color: var(--unlocated);
+}
+
+.verdict h2 {
+  margin: 0 0 14px;
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px 20px;
+  margin: 0;
+}
+
+.figures div {
+  min-width: 0;
+}
+
+.figures dt {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.figures dd {
+  margin: 2px 0 0;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+.figures em {
+  color: var(--fail);
+  font-size: 13px;
+  font-style: normal;
+}
+
+/* The table. `why` is a full-width continuation row: the reason a skill failed
+   has to sit under it, because putting it in a cell would mean hiding the fact
+   columns that made it fail. */
+table.skills {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+table.skills caption {
+  text-align: left;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 8px;
+}
+
+table.skills th,
+table.skills td {
+  text-align: left;
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--edge);
+  vertical-align: top;
+}
+
+table.skills thead th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom-width: 2px;
+}
+
+table.skills tbody th {
+  font-weight: 600;
+}
+
+tr.fail th,
+td.fail,
+.pin.drift,
+.pin.unlocated {
+  color: var(--fail);
+}
+
+.pin.unlocated {
+  color: var(--unlocated);
+}
+
+.pin.pass {
+  color: var(--pass);
+}
+
+.why-row td {
+  border-bottom: 1px solid var(--edge);
+  padding-top: 0;
+}
+
+.why {
+  color: var(--fail);
+  font-size: 13px;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+}
+
+.pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pill.pass {
+  color: var(--pass);
+}
+.pill.fail {
+  color: var(--fail);
+}
+.pill.unlocated {
+  color: var(--unlocated);
+}
+
+/* The "no result" panel. Deliberately unlike the verdict block: no coloured
+   border, because nothing was decided. */
+.unavailable {
+  max-width: 70ch;
+}
+
+.unavailable h2 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.lede {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+pre {
+  white-space: pre-wrap;
+  background: rgba(128, 128, 128, 0.1);
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.stderr {
+  margin-top: 22px;
+}
+
+.stderr summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>render harness</title>
+  </head>
+  <body>
+    <!--
+      Renders real gate summaries through the real renderer, with no Tauri.
+      Exists so the rendering path can be looked at: the interesting half of this
+      app is how a red gate is presented, and reading the template is not the
+      same as seeing it.
+
+      Query string picks the state:
+        ?summary=summary_fail.json   a real failing run
+        ?summary=summary_clean.json  a real passing run
+        ?mode=unavailable            the gate could not be run
+      The summary files are written by tools/render_shots.py, which obtains them
+      from `cargo run --example dump_summary` -- so what is rendered came out of
+      the same `summarize` the app calls.
+    -->
+    <header class="bar">
+      <h1>elohim gate</h1>
+      <p id="provenance" class="provenance"></p>
+    </header>
+    <main id="panel" class="panel"><p class="hint">loading…</p></main>
+    <script type="module">
+      import {
+        renderProvenance,
+        renderSummary,
+        renderUnavailable,
+      } from "/src/render.ts";
+
+      const panel = document.querySelector("#panel");
+      const provenance = document.querySelector("#provenance");
+      const params = new URLSearchParams(location.search);
+
+      const NOT_FOUND = [
+        "Could not find the elohim gate.",
+        "",
+        "The viewer runs the gate as a local process; it does not ship one.",
+        "",
+        "  1. Install it:            pip install elohim",
+        '  2. Or point at one:       ELOHIM_GATE_CMD="/path/to/elohim --all --json"',
+        "",
+        "Looked for `elohim` on PATH (PATH=/usr/bin).",
+      ].join("\n");
+
+      if (params.get("mode") === "unavailable") {
+        panel.innerHTML = renderUnavailable(NOT_FOUND);
+      } else {
+        const name = params.get("summary") ?? "summary_clean.json";
+        const response = await fetch(`/shots/${name}`);
+        if (!response.ok) {
+          panel.innerHTML = renderUnavailable(`harness could not load /shots/${name}`);
+        } else {
+          const summary = await response.json();
+          panel.innerHTML = renderSummary(summary);
+          provenance.innerHTML = renderProvenance(summary);
+        }
+      }
+      document.body.dataset.ready = "true";
+    </script>
+  </body>
+</html>
