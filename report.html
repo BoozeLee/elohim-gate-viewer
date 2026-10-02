@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Mandatory per the modern-web-guidance `dark-mode` guide: without this the
+         page paints light first and then flips, because the canvas is resolved
+         before any stylesheet rule that sets `color-scheme`. -->
+    <meta name="color-scheme" content="light dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A read-only report of one elohim gate run: per-skill verdicts, instrument pins, traps and facts. Rendered from a payload produced locally."
+    />
+    <title>elohim gate report</title>
+    <link rel="stylesheet" href="/src/report/report.css" />
+    <script type="module" src="/src/report/main.ts" defer></script>
+  </head>
+
+  <body class="report">
+    <header class="bar">
+      <h1>elohim gate report</h1>
+      <p class="provenance">read-only · published from one local run</p>
+    </header>
+
+    <main id="panel" class="panel">
+      <p class="hint">Loading the published run&hellip;</p>
+    </main>
+
+    <footer class="foot">
+      <p>
+        This page runs nothing. It renders a JSON file that
+        <code>tools/publish_report.py</code> produced from a gate run on the
+        machine that made it. To re-derive the numbers, run the gate yourself:
+        a report is evidence, not a substitute for the measurement.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -17,6 +17,11 @@ shots/*.json
 src-tauri/core.*
 core.*
 
+# Python bytecode from tools/test_publish_report.py. The tests are stdlib-only
+# and import publish_report, which writes this.
+__pycache__/
+*.pyc
+
 node_modules
 dist
 dist-ssr

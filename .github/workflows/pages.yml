@@ -1,0 +1,81 @@
+name: Publish the gate report
+
+# Publishes dist/ to GitHub Pages. It is a deploy, not a test run: the type
+# check happens because `npm run build` is `tsc && vite build`, and the Python
+# tests are not here because this workflow has no reason to be the place they
+# run. See the release plan for the CI gap that leaves.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - report.html
+      - src/report/**
+      - src/render.ts
+      - src/styles.css
+      - public/data/**
+      - tools/publish_report.py
+      - package.json
+      - package-lock.json
+      - tsconfig.json
+      - vite.config.ts
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. Queued rather than cancelled: a cancelled deploy
+# can leave the live site serving the previous build, which is worse than being
+# a minute behind.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Fail if the committed payload still carries a local path
+        # The page refuses to render such a file, which would publish a blank
+        # report with no explanation. Catching it here says what is wrong.
+        run: |
+          python3 tools/test_publish_report.py
+          if grep -rEoh '(^|[^\w.~-])/(home|tmp|root|Users|var|etc|opt|usr|nix|private|mnt|srv|run|proc|dev|Library|Applications)/' public/data/ ; then
+            echo "::error::public/data contains a local path; re-run tools/publish_report.py"
+            exit 1
+          fi
+
+      - run: npm ci
+
+      - name: Build for a sub-path
+        # PAGES=1 makes Vite emit relative asset URLs. Without it the page 404s
+        # on its stylesheet, because Pages serves this project from
+        # /elohim-gate-viewer/ rather than from the root.
+        run: npm run build
+        env:
+          PAGES: "1"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

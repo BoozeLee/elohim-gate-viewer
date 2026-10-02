@@ -1,0 +1,330 @@
+/* Report page styles.
+ *
+ * `@import` rather than a copy: the verdict block, the pills, the `why` line and
+ * the figures grid are the same visual language as the desktop viewer, and a
+ * report that looked like a different product would be harder to trust rather
+ * than easier. Only what this page adds is defined below.
+ *
+ * New tokens are composed with `light-dark()` per the modern-web-guidance
+ * `dark-mode` guide. The inherited tokens in styles.css still use a
+ * `prefers-color-scheme` block; that pattern is correct and the two coexist,
+ * so the shared sheet is left alone rather than churned for an idiom swap. */
+
+@import "../styles.css";
+
+:root {
+  /* Mandatory per the same guide: on the root, not just on body, so the canvas
+     and the scrollbars outside the body resolve in the right scheme. */
+  color-scheme: light dark;
+
+  --card: light-dark(#ffffff, #1d1d1c);
+  --card-edge: light-dark(#e4e4e1, #34342f);
+  --code-bg: light-dark(#f3f3f1, #232320);
+  --note: var(--muted);
+}
+
+body.report {
+  max-inline-size: 76rem;
+  margin-inline: auto;
+}
+
+body.report .bar {
+  padding-inline: 20px;
+}
+
+.meta,
+.note {
+  color: var(--note);
+  font-size: 13px;
+  margin: 6px 0 0;
+}
+
+.note {
+  margin-block: 18px;
+}
+
+.sha {
+  word-break: break-all;
+  font-size: 0.8em;
+}
+
+/* ------------------------------------------------------- per-skill cards */
+
+details.skill {
+  border: 1px solid var(--card-edge);
+  border-radius: 8px;
+  margin-block-end: 12px;
+  background: var(--card);
+  /* The verdict is carried by the rule, the pill and the word, so this reads
+     the same in greyscale and for a colour-blind reader. */
+  border-inline-start-width: 5px;
+}
+
+details.skill.pass {
+  border-inline-start-color: var(--pass);
+}
+details.skill.fail {
+  border-inline-start-color: var(--fail);
+}
+details.skill.unlocated {
+  border-inline-start-color: var(--unlocated);
+}
+
+details.skill > summary {
+  cursor: pointer;
+  padding: 11px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+}
+
+details.skill > summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+details.skill .name {
+  font-weight: 650;
+}
+
+details.skill .tally {
+  margin-inline-start: auto;
+  color: var(--note);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.skill-body {
+  padding: 0 16px 14px;
+  border-block-start: 1px solid var(--card-edge);
+  padding-block-start: 12px;
+}
+
+/* --------------------------------------------------- tables + scrollport */
+
+/* The scrollport. Also the query container for the card layout below: the
+   sticky header and the sticky first column both need somewhere to stick to,
+   and a narrow viewport is not the same condition as a narrow table. */
+.table-wrap {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(500px, 80vh);
+  container-type: inline-size;
+  margin-block: 12px;
+  border: 1px solid var(--card-edge);
+  border-radius: 6px;
+}
+
+table.data {
+  inline-size: 100%;
+  /* `separate` so a sticky header's background paints over the rows it covers;
+     `collapse` would let the scrolled row's border show through it. */
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+table.data caption {
+  text-align: start;
+  color: var(--note);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 9px 12px;
+  border-block-end: 1px solid var(--card-edge);
+  background: var(--card);
+}
+
+table.data th,
+table.data td {
+  text-align: start;
+  padding: 7px 12px;
+  border-block-end: 1px solid var(--card-edge);
+  vertical-align: top;
+}
+
+table.data thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  color: var(--note);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--card);
+  white-space: nowrap;
+}
+
+table.data tbody th {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* The sticky first column needs its own background for the same reason the
+   sticky header does: without one, the cells it passes over show through. */
+table.data tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  background: var(--card);
+  z-index: 1;
+}
+
+table.data tbody tr:last-child th,
+table.data tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+table.data tbody tr.fail th {
+  color: var(--fail);
+}
+
+/* A trap's `measured` value is often one unbroken JSON token. Without an
+   anywhere-break the table is forced to that token's width and the whole page
+   becomes a horizontal scroll, which is worse than losing the row above it. */
+/* Scoped rather than fixed in the shared sheet: a status word broken across two
+   lines ("holdin / g") is the one thing in a status column that cannot be read
+   at a glance, which is the entire job of that column. */
+table.data .pill {
+  white-space: nowrap;
+}
+
+table.data td,
+table.data code {
+  overflow-wrap: anywhere;
+}
+
+table.data.traps td:nth-child(2),
+table.data.traps td:nth-child(3) {
+  max-inline-size: 24rem;
+}
+
+table.data code {
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+table.data.traps tr {
+  --label-expected: "expected";
+  --label-measured: "measured";
+  --label-residual: "residual";
+  --label-status: "status";
+}
+
+table.data.facts tr {
+  --label-claim: "claim";
+  --label-residual: "residual";
+  --label-status: "status";
+}
+
+table.data.pin tbody th {
+  position: static;
+  inline-size: 11rem;
+  color: var(--note);
+}
+
+/* ------------------------------------------------------- the card layout */
+
+/* Below 600px of *table* width the columns stop being comparable at a glance,
+   so each row becomes a labelled card. The header row is removed from layout
+   and from the accessibility tree together -- `display:none` hides it from
+   both, which is why the labels below are mandatory rather than decorative. */
+@container (width < 600px) {
+  table.data.traps,
+  table.data.facts,
+  table.data.traps tbody,
+  table.data.facts tbody,
+  table.data.traps tr,
+  table.data.facts tr,
+  table.data.traps th,
+  table.data.facts th,
+  table.data.traps td,
+  table.data.facts td {
+    display: block;
+  }
+
+  table.data.traps thead,
+  table.data.facts thead {
+    display: none;
+  }
+
+  table.data.traps tr,
+  table.data.facts tr {
+    border-block-end: 1px solid var(--card-edge);
+    padding-block: 4px;
+  }
+
+  table.data.traps tr:last-child,
+  table.data.facts tr:last-child {
+    border-block-end: 0;
+  }
+
+  table.data.traps tbody th,
+  table.data.facts tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    z-index: 2;
+    background: var(--card);
+    font-weight: 650;
+    white-space: normal;
+  }
+
+  table.data.traps td,
+  table.data.facts td {
+    border-block-end: 0;
+    padding: 2px 0;
+  }
+
+  /* Two values in one declaration: the string is what a sighted reader sees,
+     the custom property is what a screen reader announces. Without the second
+     half the label is announced with a trailing colon and nothing else. */
+  table.data.traps td:nth-child(2)::before {
+    content: "expected: " / var(--label-expected);
+  }
+  table.data.traps td:nth-child(3)::before {
+    content: "measured: " / var(--label-measured);
+  }
+  table.data.traps td:nth-child(4)::before {
+    content: "residual: " / var(--label-residual);
+  }
+  table.data.traps td:nth-child(5)::before {
+    content: "status: " / var(--label-status);
+  }
+  table.data.facts td:nth-child(2)::before {
+    content: "claim: " / var(--label-claim);
+  }
+  table.data.facts td:nth-child(3)::before {
+    content: "residual: " / var(--label-residual);
+  }
+  table.data.facts td:nth-child(4)::before {
+    content: "status: " / var(--label-status);
+  }
+}
+
+/* ------------------------------------------------------------- refusals */
+
+.findings {
+  padding-inline-start: 20px;
+  font-size: 13px;
+  color: var(--fail);
+  word-break: break-all;
+}
+
+.foot {
+  padding: 20px;
+  border-block-start: 1px solid var(--edge);
+  color: var(--note);
+  font-size: 13px;
+  max-inline-size: 68ch;
+}
+
+.foot p {
+  margin: 0;
+}
+
+.hint {
+  color: var(--note);
+}
