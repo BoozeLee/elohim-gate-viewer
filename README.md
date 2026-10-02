@@ -183,10 +183,29 @@ Two opt-in environment variables exist for that harness:
   the gate on load instead of waiting for the button.
 - `ELOHIM_VIEWER_HOLD_OPEN=1` makes the app refuse to close. See below.
 
-Known unexplained behaviour: with `VITE_AUTORUN=1` the frontend runs the gate two
-or three times per app lifetime, each with its own runtime. It is not a
-duplicated log line — they are separate runs. `VITE_AUTORUN` is off in normal
-use, so this affects only the capture harness, and it has not been explained.
+Known behaviour on a shared desktop: with `VITE_AUTORUN=1` the gate can run
+again a minute or two into a capture, with its own runtime, and not because this
+app asked. Measured with an instrumented build that logged a random id per page
+load, the document's `click` events, and the navigation type:
+
+```
+PROBE module-eval id=dx0l6i navType=navigate at=76ms
+PROBE run-enter  id=dx0l6i at=77ms          <- VITE_AUTORUN, once
+PROBE click      isTrusted=true detail=1 at=26086ms target=BUTTON#run active=run
+PROBE run-enter  id=dx0l6i at=26086ms       <- the button, clicked
+```
+
+One page load, so not a reload and not a second autorun. `isTrusted=true` means
+a real input event rather than a scripted `el.click()`; `detail=1` means a single
+pointer click, where keyboard activation of a button reports `detail=0`. The
+button held focus because `raise_viewer` focuses the window on every capture
+attempt, so something else on this desktop — another agent working in a terminal
+— clicked at the coordinates the Run button was sitting at.
+
+The app is behaving correctly: a clicked button re-runs the gate. The capture
+harness tolerates it, because a restarted run puts the window back into its
+in-progress state, which fails the accent-pixel check and is retried. `VITE_AUTORUN`
+is off in normal use, so none of this is reachable without the harness.
 
 The fixtures are captured real payloads with paths rewritten and stdout scrubbed.
 They are **not** an oracle — `src-tauri/tests/fixtures/README.md` records exactly
