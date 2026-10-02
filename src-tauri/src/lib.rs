@@ -48,8 +48,45 @@ fn preflight() -> Result<serde_json::Value, String> {
 }
 
 /// Run the gate and return the summary to render.
+///
+/// Async, and the work is moved onto a blocking thread. A Tauri command that is
+/// not `async` runs on the main thread, which is also the thread driving the
+/// event loop -- so spawning the gate there froze the whole UI for the gate's
+/// entire runtime, and on a loaded machine the window stopped answering before
+/// the result ever arrived. The gate is a process with `wait()` on it; that
+/// belongs off the event loop.
 #[tauri::command]
-fn run_gate() -> GateResponse {
+async fn run_gate() -> GateResponse {
+    match tauri::async_runtime::spawn_blocking(run_gate_blocking).await {
+        Ok(response) => response,
+        Err(error) => GateResponse::Unavailable {
+            message: format!("The gate could not be run: {error}"),
+        },
+    }
+}
+
+/// Record what the window is showing, so the frontend's state is observable
+/// without a screenshot.
+///
+/// The backend already logs its own half of every run. That is not enough: a
+/// gate that finished and a window that painted the result are separate claims,
+/// and on this machine only one of them can be read from a log. When the window
+/// was observed stuck on "Running the gate" long after the backend had logged a
+/// completed PASS, there was no way to tell from the log alone whether the
+/// response had reached the JavaScript at all. This closes that gap: the
+/// frontend reports each render, and the log shows whether the round trip
+/// completed.
+///
+/// Deliberately a log and not a store. Nothing here is ever read back, so
+/// keeping it would be state that exists only to be believed.
+#[tauri::command]
+fn report(state: String) {
+    eprintln!("ui: {state}");
+}
+
+/// The blocking half of `run_gate`, kept separate so the command stays a
+/// one-line move onto a worker thread.
+fn run_gate_blocking() -> GateResponse {
     let command = match std::env::var(gate::OVERRIDE_ENV) {
         Ok(raw) => gate::resolve_gate_command(Some(&raw)),
         Err(_) => gate::resolve_gate_command(None),
@@ -61,10 +98,34 @@ fn run_gate() -> GateResponse {
         },
     };
     match gate::run_gate(&command).and_then(|run| gate::summarize(&run)) {
-        Ok(summary) => GateResponse::Ready { summary },
-        Err(error) => GateResponse::Unavailable {
-            message: error.to_string(),
-        },
+        Ok(summary) => {
+            // One line to stderr, unconditionally. The gate's verdict is the one
+            // number this app exists to report, and a GUI that renders it only
+            // on screen cannot be checked by anything -- not a test, not a
+            // screenshot script, not a user reading a log after the fact.
+            eprintln!(
+                "gate-run: verdict={} exit={} skills={} passed={} failed={} unlocated={} \
+                 facts={}/{} traps={}/{} runtime={:.1}s",
+                summary.verdict,
+                summary.exit_code,
+                summary.skills,
+                summary.passed,
+                summary.failed,
+                summary.unlocated,
+                summary.facts_verified,
+                summary.facts,
+                summary.traps_holding,
+                summary.traps,
+                summary.runtime_seconds,
+            );
+            GateResponse::Ready { summary }
+        }
+        Err(error) => {
+            eprintln!("gate-run: unavailable: {error}");
+            GateResponse::Unavailable {
+                message: error.to_string(),
+            }
+        }
     }
 }
 
@@ -75,7 +136,29 @@ pub fn run() {
     // filesystem paths for no benefit. The only thing this app does is read a
     // JSON payload and draw a table.
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![preflight, run_gate])
+        .invoke_handler(tauri::generate_handler![preflight, run_gate, report])
+        .on_window_event(|window, event| {
+            // Something on a shared desktop closes windows this app never asked
+            // to close: a CloseRequested arrives from outside, with no matching
+            // request anywhere in this code, and the app then exits cleanly with
+            // nothing on stderr. Measured, not assumed -- suppressing it keeps the
+            // window up indefinitely.
+            //
+            // Opt-in and off by default, because it is a workaround for the
+            // environment rather than for this program: with it on, the window
+            // ignores a close the user asked for, which would be wrong on a
+            // desktop where nothing else is interfering.
+            if std::env::var_os("ELOHIM_VIEWER_HOLD_OPEN").is_none() {
+                return;
+            }
+            if let tauri::WindowEvent::CloseRequested { api, .. } = event {
+                eprintln!(
+                    "ELOHIM_VIEWER_HOLD_OPEN is set; refusing an externally-sent close"
+                );
+                api.prevent_close();
+                let _ = window;
+            }
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

@@ -96,21 +96,97 @@ from `instrument_error` rather than a cheerful `0/0`. Rendering an unmeasured
 skill as a clean one is the single most dangerous thing a table like this could
 do.
 
-**Absolute paths.** `skills_root`, `instrument` and `instrument_pin.path` are host
-paths. They are read out and dropped; a test asserts that no host path survives
-into the summary the frontend receives. What travels between machines is the
-pin's sha256, and that is shown shortened to 12 characters.
+**Absolute paths, per skill.** `skills_root`, `instrument` and
+`instrument_pin.path` are host paths specific to whichever machine ran the gate.
+They are read out and dropped; a test asserts that no host path reaches the
+frontend. What travels between machines is the pin's sha256, shown shortened to
+12 characters.
+
+The one host path on screen is the invocation command itself, printed as
+provenance above the table. That is deliberate and it is the exception, not an
+oversight: a verdict with no idea which checkout produced it is the failure this
+app exists to make visible. Both window screenshots show it.
 
 ## Evidence
 
-`shots/` holds three rendered states, produced from the fixtures in
-`src-tauri/tests/fixtures/` — a real passing run, a real failing run, and the
-"no gate" state. `npm run shots` rebuilds them.
+`shots/` holds five renders.
 
-Those screenshots are regenerated and are the only binaries in the tree. They are
-committed because a reviewer should be able to see the red state without running
-anything, and `npm run shots` asserts that the pass and fail renders differ in
-content rather than only in pixels.
+Three are the renderer alone, from the fixtures in `src-tauri/tests/fixtures/` —
+a passing run, a failing run, and the "no gate" state. `npm run shots` rebuilds
+them, and asserts that the pass and fail renders differ in content rather than
+only in pixels.
+
+Two are the real application window, captured off a live screen:
+
+| | |
+|---|---|
+| `window-pass.png` | the window against a clean checkout: `PASS — 6 of 6 skills verified`, 81/81 facts, 38/38 traps, exit 0 |
+| `window-fail.png` | the window against a deliberately corrupted tree: `FAIL — 4 of 6 skills verified, 2 failed`, 80/81 facts with `1 drifted`, exit 1 |
+
+The window ones are committed because they are the only evidence that the
+rendered pixels are what the tests think they are. Everything below the window
+was verified by `cargo test`; a passing test suite says nothing about what a
+user sees. `tools/see-window.sh` produced them, and it does not take a picture
+unless the crop it took is provably the window — see below.
+
+The failing payload was produced for real, not hand-written: one `verified` token
+in `skills/elohim/instrument/summoning_shard.py` was flipped to `drifted`, which
+changed the file by one byte. That broke two independent things — elohim's own
+instrument pin went to `DRIFT`, and a `reproducibility` fact about sibling pins
+went with it. `window-fail.png` shows both, in the right rows, and shows them
+differing: `elohim` is `FAIL / DRIFT` while `reproducibility` is `FAIL / PASS`,
+a green pin under a red verdict.
+
+The fixtures are captured real payloads with paths rewritten and stdout scrubbed.
+They are **not** an oracle — `src-tauri/tests/fixtures/README.md` records exactly
+what each one was made to break. A fixture that agrees with the viewer proves
+nothing on its own; it is a regression pin, not a source of truth.
+
+## Running it on a machine with no GPU
+
+WebKit allocates a GL render surface on startup and fails with `Failed to create
+GBM buffer of size ... Invalid argument` on a box without a usable GPU. That
+failure is reported as `Gdk-Message: Error 71 (Protocol error) dispatching to
+Wayland display`, which reads like a compositor incompatibility and is not one —
+Wayland is fine. Force software rendering and the error goes away:
+
+```sh
+LIBGL_ALWAYS_SOFTWARE=1 GSK_RENDERER=cairo WEBKIT_DISABLE_COMPOSITING_MODE=1 npm run tauri dev
+```
+
+`tools/launch-viewer.sh` does this for you.
+
+Do not reach for `GDK_BACKEND=x11` as a workaround. It is not a fix: it makes the
+app exit silently with status 0 after about four seconds, with no panic and no
+output. Measured, twice.
+
+## Screenshotting the window
+
+`tools/see-window.sh` launches the app, waits for the gate, moves the window into
+view, and captures it.
+
+```sh
+ELOHIM_VIEWER_RUN=1 ELOHIM_GATE_CMD="python3 /path/to/harness_run.py" ./tools/see-window.sh out.png
+```
+
+It does not take a picture unless the crop is provably the window. A crop is
+accepted only if it contains at least 300 strongly saturated pixels — the
+verdict card's border and pill. A crop of some other window on the same
+workspace can match the geometry, be mapped, and still be the wrong picture;
+those two checks together did not stop it, and the pixel count did. On the run
+that produced `window-fail.png` this rejected four wrong crops in a row before
+accepting a real one.
+
+Two opt-in environment variables exist for that harness:
+
+- `VITE_AUTORUN=1` (set for you when `ELOHIM_VIEWER_RUN=1`) makes the window run
+  the gate on load instead of waiting for the button.
+- `ELOHIM_VIEWER_HOLD_OPEN=1` makes the app refuse to close. See below.
+
+Known unexplained behaviour: with `VITE_AUTORUN=1` the frontend runs the gate two
+or three times per app lifetime, each with its own runtime. It is not a
+duplicated log line — they are separate runs. `VITE_AUTORUN` is off in normal
+use, so this affects only the capture harness, and it has not been explained.
 
 The fixtures are captured real payloads with paths rewritten and stdout scrubbed.
 They are **not** an oracle — `src-tauri/tests/fixtures/README.md` records exactly
@@ -125,13 +201,38 @@ went with it — and the viewer shows both, in the right rows.
 
 ## Status
 
-Verified: the Rust gate-invocation logic (23 tests), the renderer (rendered in a
-real browser and screenshotted), the IPC shapes, and the end-to-end link against
-a real gate in both directions — `PASS exit=0 skills=6 passed=6 facts=81/81
-traps=38/38` against the clean checkout, and `FAIL exit=1 skills=6 passed=4
-failed=2 facts=80/81 traps=37/38` against the corrupted one.
+Verified end to end, in the real window, against real gates in both directions:
 
-Not verified: the Tauri window has never been seen. `npm run tauri dev` builds
-and starts, then the process dies on `Gdk-Message: Error 71 (Protocol error
-dispatching to Wayland display)`. Everything below the window is tested; the
-window itself is not, and this README does not claim otherwise.
+- `window-pass.png` — clean checkout: `PASS`, 6/6 skills, 81/81 facts, 38/38
+  traps, exit 0.
+- `window-fail.png` — corrupted tree: `FAIL`, 4/6 skills, 80/81 facts with
+  `1 drifted`, 37/38 traps, exit 1, both independent failures visible in their
+  rows.
+- 23 Rust tests, the renderer in a real browser, and the same round trip driven
+  headlessly via `npm run test:gate`.
+
+Two bugs were found by doing this that no test found:
+
+**The gate ran on the UI thread.** `run_gate` was a plain `#[tauri::command]`,
+which runs on the main thread — the same thread that drives the event loop — so
+a fifteen-second gate froze the entire window. It is now `async` and delegates
+to `spawn_blocking`.
+
+**The real-gate test was a false pass.** It returned early when
+`ELOHIM_GATE_CMD` was unset, and cargo counted that as a pass, so the one test
+covering the end-to-end link printed green while executing nothing. It is now
+`#[ignore]`d with a reason, so cargo reports it as ignored, and runs via
+`npm run test:gate`.
+
+Not verified: nothing about the rendering above is claimed on the strength of a
+passing test. The screenshots are the evidence, and they were taken from a live
+window on a live compositor.
+
+One environment caveat, not a defect in this app: on the machine these were
+captured on, something outside the app sends the window a close request a few
+seconds after it maps. The trace is `CloseRequested` → `Destroyed` →
+`ExitRequested`, with no matching request anywhere in this code, and suppressing
+it with `api.prevent_close()` makes the window survive indefinitely.
+`ELOHIM_VIEWER_HOLD_OPEN=1` enables that suppression for the screenshot harness.
+It is off by default, and should stay that way: on a normal desktop it would
+make the window ignore a close the user actually asked for.
