@@ -255,3 +255,21 @@ it with `api.prevent_close()` makes the window survive indefinitely.
 `ELOHIM_VIEWER_HOLD_OPEN=1` enables that suppression for the screenshot harness.
 It is off by default, and should stay that way: on a normal desktop it would
 make the window ignore a close the user actually asked for.
+
+## Known dependency advisory
+
+Dependabot reports one: [GHSA-wrw7-89jp-8q8g](https://github.com/advisories/GHSA-wrw7-89jp-8q8g),
+moderate, unsound `Iterator`/`DoubleEndedIterator` impls for
+`glib::VariantStrIter`, fixed in `glib` 0.20.0. This build resolves `glib`
+0.18.5.
+
+It is not fixable within Tauri 2. `cargo update -p glib` reports zero packages
+available: `glib` 0.18 is what the whole GTK stack of the current Tauri ships
+(`gtk` 0.18.2 via `tauri` 2.12.1), and the first release carrying `glib` 0.20 is
+`tauri` 3.0.0-alpha.4. Moving to an alpha framework to clear a moderate advisory
+in a transitive binding is the wrong trade, so it is left open and stated here.
+
+Exposure for this app is small but not zero, so the reasoning is written down
+rather than asserted away: the unsound code is a Rust-side iterator over GLib
+variants, and nothing in this app references `glib` or any `Variant` type. The
+dependency exists only inside Tauri's GTK webview plumbing.

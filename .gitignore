@@ -12,6 +12,11 @@ lerna-debug.log*
 # derived from the fixtures and would only create merge noise.
 shots/*.json
 
+# Core dumps. A crashing WebKit on a software-rendering box writes one here, and
+# it is gigabytes.
+src-tauri/core.*
+core.*
+
 node_modules
 dist
 dist-ssr
