@@ -102,10 +102,16 @@ They are read out and dropped; a test asserts that no host path reaches the
 frontend. What travels between machines is the pin's sha256, shown shortened to
 12 characters.
 
-The one host path on screen is the invocation command itself, printed as
-provenance above the table. That is deliberate and it is the exception, not an
-oversight: a verdict with no idea which checkout produced it is the failure this
-app exists to make visible. Both window screenshots show it.
+The command that produced a run is printed as provenance above the table, and it
+is the one place a path could reach the screen. It is shown as bare filenames —
+`harness_run.py --all --json`, not the checkout it came from.
+
+That is not timidity, and it reverses an earlier decision here. `window-pass.png`
+used to carry `/home/<user>/…` into a committed PNG, because this line printed
+the command verbatim and a screenshot cannot be un-published by editing the text
+around it. Knowing *which command* ran is the provenance worth having. Knowing
+whose machine it ran on is the half that leaks, and it was never the half that
+made the verdict legible.
 
 ## Evidence
 
@@ -116,18 +122,30 @@ a passing run, a failing run, and the "no gate" state. `npm run shots` rebuilds
 them, and asserts that the pass and fail renders differ in content rather than
 only in pixels.
 
-Two are the real application window, captured off a live screen:
+Two are the real application window on a real compositor, captured off a live
+screen. The gate they display is fed from the committed fixtures by
+`tools/emit_fixture.py`, not from a live gate run:
 
 | | |
 |---|---|
-| `window-pass.png` | the window against a clean checkout: `PASS — 6 of 6 skills verified`, 81/81 facts, 38/38 traps, exit 0 |
-| `window-fail.png` | the window against a deliberately corrupted tree: `FAIL — 4 of 6 skills verified, 2 failed`, 80/81 facts with `1 drifted`, exit 1 |
+| `window-pass.png` | `payload_clean.json`: `PASS — 6 of 6 skills verified`, 81/81 facts, 38/38 traps, exit 0 |
+| `window-fail.png` | `payload_fail.json`: `FAIL — 4 of 6 skills verified, 2 failed`, 80/81 facts with `1 drifted`, exit 1 |
+
+That indirection is what makes them reproducible. Taken against a live gate,
+`window-pass.png` required the gate to pass on the day it was captured, and it
+does not pass today.
 
 The window ones are committed because they are the only evidence that the
 rendered pixels are what the tests think they are. Everything below the window
 was verified by `cargo test`; a passing test suite says nothing about what a
 user sees. `tools/see-window.sh` produced them, and it does not take a picture
 unless the crop it took is provably the window — see below.
+
+One blemish is in `window-fail.png` and is not the app: the circled `H` at the top
+right is Hyprland's workspace indicator, drawn because the capture harness
+switches workspaces to follow the window. It is in no other screenshot and it
+covers no field. It is left in rather than cropped, because a crop that removes
+it also removes the pixels that prove the shot is the whole window.
 
 The failing payload was produced for real, not hand-written: one `verified` token
 in `skills/elohim/instrument/summoning_shard.py` was flipped to `drifted`, which
@@ -168,6 +186,24 @@ view, and captures it.
 ```sh
 ELOHIM_VIEWER_RUN=1 ELOHIM_GATE_CMD="python3 /path/to/harness_run.py" ./tools/see-window.sh out.png
 ```
+
+To reproduce the committed shots, point the gate at a fixture instead:
+
+```sh
+ELOHIM_VIEWER_RUN=1 \
+ELOHIM_GATE_CMD="python3 $PWD/tools/emit_fixture.py $PWD/src-tauri/tests/fixtures/payload_fail.json" \
+./tools/see-window.sh window-fail.png
+```
+
+Use absolute paths there. The app spawns the gate with its own working
+directory, so a relative path to the script is not found and the window renders
+"unavailable" instead of the fixture.
+
+`emit_fixture.py` exists because the app appends `--all --json` to whatever
+`ELOHIM_GATE_CMD` names, so `cat payload_fail.json` exits 1 having printed
+nothing and the window reports "no payload". It accepts and ignores those flags,
+validates the schema before printing, and mirrors the harness on the exit code —
+a payload with a failing skill exits 1, exactly as a real failing run does.
 
 It does not take a picture unless the crop is provably the window. A crop is
 accepted only if it contains at least 300 strongly saturated pixels — the
@@ -220,11 +256,11 @@ went with it — and the viewer shows both, in the right rows.
 
 ## Status
 
-Verified end to end, in the real window, against real gates in both directions:
+Verified end to end, in the real window, in both directions:
 
-- `window-pass.png` — clean checkout: `PASS`, 6/6 skills, 81/81 facts, 38/38
-  traps, exit 0.
-- `window-fail.png` — corrupted tree: `FAIL`, 4/6 skills, 80/81 facts with
+- `window-pass.png` — `payload_clean.json`: `PASS`, 6/6 skills, 81/81 facts,
+  38/38 traps, exit 0.
+- `window-fail.png` — `payload_fail.json`: `FAIL`, 4/6 skills, 80/81 facts with
   `1 drifted`, 37/38 traps, exit 1, both independent failures visible in their
   rows.
 - 23 Rust tests, the renderer in a real browser, and the same round trip driven

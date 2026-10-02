@@ -160,8 +160,30 @@ export function renderSummary(summary: GateSummary): string {
   );
 }
 
+/**
+ * The command with every rooted path reduced to its file name.
+ *
+ * The header used to print `command` verbatim, which put the author's home
+ * directory into every screenshot of this window and therefore into the public
+ * repository. The flags are the part worth reading, and they survive intact.
+ *
+ * Splitting is on whitespace, so a path containing a space would be cut in
+ * half. The gate's own path has none, and a truncated path is still a better
+ * outcome than publishing someone's home directory.
+ */
+export function reduceCommand(command: string): string {
+  return command
+    .split(/\s+/)
+    .filter((token) => token.length > 0)
+    .map((token) =>
+      token.startsWith("/") ? token.slice(token.lastIndexOf("/") + 1) : token
+    )
+    .join(" ");
+}
+
 export function renderProvenance(summary: GateSummary): string {
-  return `${esc(summary.command)} &middot; payload <code>${esc(summary.schema)}</code>`;
+  const command = reduceCommand(summary.command);
+  return `${esc(command)} &middot; payload <code>${esc(summary.schema)}</code>`;
 }
 
 /**
