@@ -6,8 +6,8 @@ written, and it refuses to write at all if a path survives -- so a leak cannot
 reach a public URL by being missed in one field of one payload.
 
 Two rules, because one rule cannot be right for both cases
-    A path may contain spaces ("/home/kilisan/My Docs/instrument.py"), and prose
-    after a path does not belong to it ("/home/k/i.py for details"). No single
+    A path may contain spaces ("/home/example/My Docs/instrument.py"), and prose
+    after a path does not belong to it ("/home/example/i.py for details"). No single
     regular expression can tell those apart. So fields whose *value is* a path
     are reduced to their file name outright, and every other string gets a
     whitespace-exclusive sweep as a net for the fields nobody listed.
@@ -16,7 +16,7 @@ What is kept
     Everything else: skill names, claim ids, expected/measured pairs, residuals,
     sha256 values and the per-skill `seal`. Those are the measurement, and the
     point of the page is that a reader can check them. Only the directory is
-    removed, because "/home/someone/..." is identity and "summoning_shard.py" is
+    removed, because "/home/example/..." is identity and "summoning_shard.py" is
     content.
 
 Usage

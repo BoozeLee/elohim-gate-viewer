@@ -3,7 +3,7 @@
 
 The load-bearing one is `test_path_with_a_space_is_fully_reduced`: it exists
 because the first version of the scrubber kept the directory of a path that
-contained a space ("/home/kilisan/My Docs/instrument.py" became
+contained a space ("/home/example/My Docs/instrument.py" became
 "My Docs/instrument.py"), and the residual check did not catch it. A redaction
 that removes half a path is not a redaction.
 """
@@ -66,7 +66,7 @@ class Redaction(unittest.TestCase):
 
     def test_path_with_a_space_is_fully_reduced(self):
         out, s = self.scrub(
-            envelope(skill(instrument="/home/kilisan/My Docs/instrument.py"))
+            envelope(skill(instrument="/home/example/My Docs/instrument.py"))
         )
         self.assertEqual(
             out["skills"][0]["instrument"], "instrument.py", "directory survived scrubbing"
@@ -75,7 +75,7 @@ class Redaction(unittest.TestCase):
 
     def test_path_with_a_space_in_pin_path_is_fully_reduced(self):
         out, _ = self.scrub(envelope(skill()))
-        out["skills"][0]["instrument_pin"]["path"] = "/home/kilisan/My Docs/instrument.py"
+        out["skills"][0]["instrument_pin"]["path"] = "/home/example/My Docs/instrument.py"
         out, _ = self.scrub(out)
         self.assertEqual(out["skills"][0]["instrument_pin"]["path"], "instrument.py")
         self.assertEqual(pr.residual_paths(out), [])
@@ -103,7 +103,7 @@ class Redaction(unittest.TestCase):
 
     def test_path_hidden_in_a_prose_field_is_still_swept(self):
         out, s = self.scrub(
-            envelope(bare_skill(detail="instrument at /home/kilisan/x/i.py drifted"))
+            envelope(bare_skill(detail="instrument at /home/example/x/i.py drifted"))
         )
         self.assertEqual(out["skills"][0]["detail"], "instrument at i.py drifted")
         self.assertEqual(pr.residual_paths(out), [])

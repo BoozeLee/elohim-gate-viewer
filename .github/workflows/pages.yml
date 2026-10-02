@@ -55,6 +55,24 @@ jobs:
             exit 1
           fi
 
+      - name: Fail if a tracked file names anybody's home directory
+        # The payload check above only covers what the page renders. This covers
+        # the repository: a test fixture or a comment can carry a real home path
+        # just as easily, and nothing downstream would catch it.
+        #
+        # The pattern needs a segment after /home/, not just /home/, so this step
+        # does not trip over its own text or over the render test that asserts
+        # "/home/" never appears. -I skips binaries: a screenshot cannot be
+        # grepped, so images are the one place this gate cannot see.
+        run: |
+          hits=$(git grep -nI -E '/home/[A-Za-z0-9._-]+/' -- . \
+            | grep -v -e '/home/example/' || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::a tracked file names a home directory; use /home/example as the placeholder"
+            exit 1
+          fi
+
       - run: npm ci
 
       - name: Build for a sub-path
