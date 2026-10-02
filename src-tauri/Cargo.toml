@@ -5,11 +5,11 @@ description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
 
-# This package is its own workspace root. /home/kilisan/Cargo.toml declares a
-# workspace, and without this table Cargo treats every directory beneath the
-# home directory as a member of it -- which would tie this app's dependency
-# resolution to an unrelated project's manifest. Keeping it independent is what
-# makes `cargo test` here mean what it says.
+# This package is its own workspace root. Some ancestor directories on a
+# developer's machine declare a Cargo workspace, and without this table Cargo
+# treats every directory beneath them as a member of it -- which would tie this
+# app's dependency resolution to an unrelated project's manifest. Keeping it
+# independent is what makes `cargo test` here mean what it says.
 [workspace]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
