@@ -1,0 +1,119 @@
+name: Rust tests
+
+# `cargo test` for src-tauri. This is a separate workflow from the Pages deploy
+# on purpose: a deploy job that also compiled Rust would either install Tauri's
+# Linux build dependencies to render a page that needs none of them, or -- worse
+# -- quietly stop running the tests when a dependency install fails. Before this
+# existed, nothing compiled src-tauri on any push. Its 23 tests were run by hand
+# and the result was recorded nowhere a reader could check, which is the same
+# defect this repository is about: a claim nobody re-derives.
+#
+# What this does NOT do: build the bundle. No AppImage, no .deb, no `tauri
+# build`, no code signing. The packages installed below are the ones Tauri's
+# build script links against, not the ones a distributable needs, and a green run
+# here says the logic compiles and the tests pass -- nothing about whether a
+# release artifact would install.
+#
+# Status: written against a local run of the same commands, not against a green
+# Actions run. Every `cargo` step here has been executed by hand at the command
+# level, including the ignored-count assertion, but the apt step has never run on
+# a runner that did not already have these libraries. The first push will tell us
+# whether the package names resolve; until it does, this file is a claim under
+# test rather than a passing gate, and the changelog says so.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install Tauri's Linux build dependencies
+        # Taken verbatim from the Tauri v2 prerequisites for Debian/Ubuntu
+        # rather than assembled from memory, because a package name that does not
+        # resolve fails the whole job and the error is "Unable to locate
+        # package", which says nothing about which of the eight was wrong.
+        #
+        # curl, wget and file are in the documented set and are kept even though
+        # `cargo test` probably does not reach for them. Removing them would be
+        # a guess about tauri-build's internals, made in a file nobody can run
+        # locally.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libwebkit2gtk-4.1-dev \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libxdo-dev \
+            libssl-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Fail if a tracked file names anybody's home directory
+        # Repeated from the Pages workflow rather than shared with it. That step
+        # runs under a paths filter covering the report page, so a push touching
+        # only Rust would otherwise reach main with no leak check at all, and the
+        # check is one grep. Two copies can drift; one copy that runs on a subset
+        # of pushes is worse, because it looks like coverage.
+        #
+        # -I skips binaries: a committed screenshot cannot be grepped, which is
+        # the one place this gate cannot see.
+        run: |
+          hits=$(git grep -nI -E '/home/[A-Za-z0-9._-]+/' -- . \
+            | grep -v -e '/home/example/' || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::a tracked file names a home directory; use /home/example as the placeholder"
+            exit 1
+          fi
+
+      - name: cargo test
+        # --manifest-path, not `working-directory: src-tauri`, and the reason is
+        # a defect this file had until it was measured: written with a
+        # working-directory on this step and without one on the last step, the
+        # last step ran `cargo` from the repository root, where there is no
+        # Cargo.toml, so cargo walked up the filesystem and found an unrelated
+        # workspace two directories above this checkout. Locally that meant
+        # testing three crates this repository has nothing to do with; on a
+        # runner it fails while naming a project nobody here has heard of.
+        # `--manifest-path` names the crate instead of the directory, so no
+        # amount of deleting a YAML key can point either step at a different
+        # crate.
+        #
+        # --locked, because src-tauri/Cargo.lock is committed and this crate
+        # resolves a tree with a known-open advisory in it. Testing against a
+        # re-resolved tree would test a different build than the one the
+        # advisory is written about.
+        run: cargo test --manifest-path src-tauri/Cargo.toml --locked
+
+      - name: Say what a green run does not cover
+        # One test is #[ignore]d and stays ignored: the end-to-end link needs a
+        # real gate, named in ELOHIM_GATE_CMD, which this runner does not have.
+        # It used to return early instead, and cargo counted that as a pass --
+        # the one test covering the round trip printed green while executing
+        # nothing. If the ignored count is ever anything but exactly 1, the
+        # suite changed shape and this note is wrong.
+        run: |
+          count=$(cargo test --manifest-path src-tauri/Cargo.toml --locked \
+            -- --ignored --list 2>/dev/null | grep -c ': test$' || true)
+          echo "ignored tests requiring a real gate: $count"
+          if [ "$count" -ne 1 ]; then
+            echo "::error::expected exactly 1 ignored test; the suite's shape changed"
+            exit 1
+          fi
