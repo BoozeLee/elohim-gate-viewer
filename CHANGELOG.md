@@ -19,12 +19,24 @@ has never been tagged; there would be nothing for one to compare.
 
 Nothing yet.
 
-## [0.1.0]
+## [0.1.0] — 2026-10-03
 
-**Not tagged. Not published.** No tag has ever been created in this repository
-and no GitHub release exists, so this heading declares a version rather than
-describing an event. It covers the whole history as it stood when it was
-written, which `git log --oneline` lists in full.
+**The first tag and the first release in this repository.** `git tag -l` listed
+nothing before it and the releases page was empty. It covers the whole history,
+which `git log --oneline` lists in full, and it is the tag this entry is measured
+against.
+
+This repository has **no ruleset and no tag protection** — `gh api repos/BoozeLee/
+elohim-gate-viewer/rulesets` returns nothing and `tags/protection` returns 404 — so
+unlike the sibling `elohim` repository, whose `v0.1.0` is an orphan that cannot be
+moved or deleted, a tag here can be corrected if it is wrong. That asymmetry is the
+reason the same mistake was affordable there and not here.
+
+One test in this release has never been executed anywhere, and that is a property of
+the release rather than a defect in it: `src-tauri/tests/real_gate.rs` is
+`#[ignore]`d because it needs a real gate run and `ELOHIM_GATE_CMD` set. Every other
+test in `src-tauri` runs in CI on a clean runner — see **Rust in CI** below, and
+`npm run test:gate` for the one that does not.
 
 ### Added
 
@@ -242,16 +254,17 @@ and renders it.
 | The dependency advisory and core dumps | 1 |
 | Prose corrections | 2 |
 | Rust in CI | 1 |
-| **Total** | **11** |
+| Writing the changelog, and the claim a green CI run falsified | 2 |
+| Declaring the release | 1 |
+| **Total** | **14** |
 
 Check it two ways, and the second is the one that matters:
 
-- `git rev-list --count HEAD` prints the total. It read 11 over the history as it
-  stood one commit before the commit that wrote this file, which is how any
-  release's own commit escapes its own table; it reads 12 now and will read more
-  after anything is added. The table is a record of this release, not a live
-  claim.
-- `git log --oneline` prints the list. A subject no group accounts for is the
+- `git rev-list --count v0.1.0` prints the total for the release. It reads 14 at
+  this tag. The table is a record of the release, not a live claim, so the number
+  moves as soon as anything is added after the tag — which is why the command is
+  given rather than only the figure.
+- `git log --oneline v0.1.0` prints the list. A subject no group accounts for is the
   gap. A count is not a check; the list is.
 
 The figures quoted above, each with the command that produces it:
