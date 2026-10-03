@@ -1,9 +1,13 @@
 name: Publish the gate report
 
-# Publishes dist/ to GitHub Pages. It is a deploy, not a test run: the type
-# check happens because `npm run build` is `tsc && vite build`, and the Python
-# tests are not here because this workflow has no reason to be the place they
-# run. See the release plan for the CI gap that leaves.
+# Publishes dist/ to GitHub Pages. It is a deploy, not a general test run: the
+# type check happens because `npm run build` is `tsc && vite build`, and the one
+# Python suite in this repository runs here because a payload check belongs next
+# to the thing that would publish it. Everything else -- src-tauri's 23 Rust
+# tests -- runs in rust.yml, which carries no paths filter and so covers every
+# push rather than only the ones that touch the report page. That sentence used
+# to point at a release plan for a CI gap; the gap is closed, the plan is not
+# here, and a reader should not have to know either to know where the tests are.
 
 on:
   push:
