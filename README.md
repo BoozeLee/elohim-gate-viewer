@@ -243,17 +243,6 @@ harness tolerates it, because a restarted run puts the window back into its
 in-progress state, which fails the accent-pixel check and is retried. `VITE_AUTORUN`
 is off in normal use, so none of this is reachable without the harness.
 
-The fixtures are captured real payloads with paths rewritten and stdout scrubbed.
-They are **not** an oracle — `src-tauri/tests/fixtures/README.md` records exactly
-what each one was made to break. A fixture that agrees with the viewer proves
-nothing on its own; it is a regression pin, not a source of truth.
-
-The failing payload was produced for real, not hand-written: one `verified` token
-in `skills/elohim/instrument/summoning_shard.py` was flipped to `drifted`, which
-changed the file by one byte. That broke two independent things — elohim's own
-instrument pin went to `DRIFT`, and a `reproducibility` fact about sibling pins
-went with it — and the viewer shows both, in the right rows.
-
 ## Status
 
 Verified end to end, in the real window, in both directions:
