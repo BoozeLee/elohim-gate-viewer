@@ -1,245 +1,212 @@
 {
-  "published": "2026-10-02T21:13:41+00:00",
-  "source_run": "2026-10-02T14:59:17+00:00",
-  "redacted_paths": 13,
+  "published": "2026-10-03T09:36:40+00:00",
+  "source_run": "2026-10-03T09:36:23+00:00",
+  "redacted_paths": 22,
   "redacted_from_path_fields": 12,
   "scrubber": "tools/publish_report.py",
   "payload": {
+    "schema": "elohim.gate/1",
+    "run": "2026-10-03T09:36:23+00:00",
+    "skills_root": "_skills",
     "budget_seconds": 600,
     "fail_under": null,
-    "run": "2026-10-02T14:59:17+00:00",
-    "schema": "elohim.gate/1",
     "skills": [
       {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.082,
-          "status": "OK",
-          "unverified_exemptions": 10
+        "schema": "elohim.gate/1",
+        "skill": "elohim",
+        "run": "2026-10-03T09:36:10+00:00",
+        "instrument": "summoning_shard.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "summoning_shard.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "a920cdd5dd51f732129aa67b607cc59d9718a50aadb89c90ec397480c69cbd9b",
+          "actual_sha256": "a920cdd5dd51f732129aa67b607cc59d9718a50aadb89c90ec397480c69cbd9b",
+          "expected_bytes": 30497,
+          "actual_bytes": 30497,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
         },
+        "verdict": "PASS",
         "facts": [
           {
-            "claim": "the greedy expansion of 1 terminates only in the plastic and tribonacci bases among those probed",
-            "detail": "parry_finite measured ['plastic', 'tribonacci'] against a recorded ['plastic', 'tribonacci']",
             "id": "parry_finite_bases",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the greedy expansion of 1 terminates only in the plastic and tribonacci bases among those probed",
+            "status": "verified",
+            "detail": "parry_finite measured ['plastic', 'tribonacci'] against a recorded ['plastic', 'tribonacci']",
+            "residual": 0.0
           },
           {
-            "claim": "the base-phi expansion flips between finite and infinite purely by working precision",
-            "detail": "knife_edge_sensitive measured True against a recorded True",
             "id": "knife_edge_sensitive",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the base-phi expansion flips between finite and infinite purely by working precision",
+            "status": "verified",
+            "detail": "knife_edge_sensitive measured True against a recorded True",
+            "residual": 0.0
           },
           {
-            "claim": "|alpha| of the tribonacci conjugate pair is 0.7373527057603276",
-            "detail": "pisot_decay.tribonacci measured 0.7373527057603276 against a recorded 0.7373527057603276",
             "id": "tribonacci_decay_rate",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "|alpha| of the tribonacci conjugate pair is 0.7373527057603276",
+            "status": "verified",
+            "detail": "pisot_decay.tribonacci measured 0.7373527057603276 against a recorded 0.7373527057603276",
+            "residual": 0.0
           },
           {
-            "claim": "|alpha| of the plastic conjugate pair is 0.8688369618327093",
-            "detail": "pisot_decay.plastic measured 0.8688369618327093 against a recorded 0.8688369618327093",
             "id": "plastic_decay_rate",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "|alpha| of the plastic conjugate pair is 0.8688369618327093",
+            "status": "verified",
+            "detail": "pisot_decay.plastic measured 0.8688369618327093 against a recorded 0.8688369618327093",
+            "residual": 0.0
           },
           {
-            "claim": "the deflation identity |alpha| = sqrt(1/lambda) holds with zero discrepancy for tribonacci",
-            "detail": "tribonacci.modulus_discrepancy measured 0.0 against a recorded 0.0",
             "id": "tribonacci_modulus_identity",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the deflation identity |alpha| = sqrt(1/lambda) holds with zero discrepancy for tribonacci",
+            "status": "verified",
+            "detail": "tribonacci.modulus_discrepancy measured 0.0 against a recorded 0.0",
+            "residual": 0.0
           },
           {
-            "claim": "the deflation identity |alpha| = sqrt(1/lambda) holds with zero discrepancy for plastic",
-            "detail": "plastic.modulus_discrepancy measured 0.0 against a recorded 0.0",
             "id": "plastic_modulus_identity",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the deflation identity |alpha| = sqrt(1/lambda) holds with zero discrepancy for plastic",
+            "status": "verified",
+            "detail": "plastic.modulus_discrepancy measured 0.0 against a recorded 0.0",
+            "residual": 0.0
           },
           {
-            "claim": "Pisot's bound 2 is attained at n=192 for tribonacci, at 1.9999748",
-            "detail": "tribonacci.bound_max measured 1.9999748216657969 against a recorded 1.9999748216657969",
             "id": "tribonacci_bound_tight",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "Pisot's bound 2 is attained at n=192 for tribonacci, at 1.9999748",
+            "status": "verified",
+            "detail": "tribonacci.bound_max measured 1.9999748216657969 against a recorded 1.9999748216657969",
+            "residual": 0.0
           },
           {
-            "claim": "Pisot's bound 2 is attained at n=183 for plastic, at 1.9999996",
-            "detail": "plastic.bound_max measured 1.9999995588370598 against a recorded 1.9999995588370598",
             "id": "plastic_bound_tight",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "Pisot's bound 2 is attained at n=183 for plastic, at 1.9999996",
+            "status": "verified",
+            "detail": "plastic.bound_max measured 1.9999995588370598 against a recorded 1.9999995588370598",
+            "residual": 0.0
           },
           {
-            "claim": "the superellipse perimeter rises monotonically from 2*pi toward 8",
-            "detail": "unicorn_monotonic measured True against a recorded True",
             "id": "unicorn_monotonic",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the superellipse perimeter rises monotonically from 2*pi toward 8",
+            "status": "verified",
+            "detail": "unicorn_monotonic measured True against a recorded True",
+            "residual": 0.0
           },
           {
-            "claim": "the n=2 superellipse is the circle, perimeter 6.283185307179587",
-            "detail": "unicorn_perimeters.2 measured 6.283185307179587 against a recorded 6.283185307179587",
             "id": "unicorn_circle",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the n=2 superellipse is the circle, perimeter 6.283185307179587",
+            "status": "verified",
+            "detail": "unicorn_perimeters.2 measured 6.283185307179587 against a recorded 6.283185307179587",
+            "residual": 0.0
           },
           {
-            "claim": "the n=256 superellipse approaches the square, perimeter 7.982740098651185",
-            "detail": "unicorn_perimeters.256 measured 7.982740098651185 against a recorded 7.982740098651185",
             "id": "unicorn_square_limit",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the n=256 superellipse approaches the square, perimeter 7.982740098651185",
+            "status": "verified",
+            "detail": "unicorn_perimeters.256 measured 7.982740098651185 against a recorded 7.982740098651185",
+            "residual": 0.0
           },
           {
-            "claim": "the trace from 79256 reaches 1 in 45 steps with 11 odd steps and replays identically",
-            "detail": "collatz.reached_one measured True against a recorded True",
             "id": "collatz_reaches_one",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the trace from 79256 reaches 1 in 45 steps with 11 odd steps and replays identically",
+            "status": "verified",
+            "detail": "collatz.reached_one measured True against a recorded True",
+            "residual": 0.0
           },
           {
-            "claim": "a second trace from the same seed follows the same path",
-            "detail": "collatz.replay_consistent measured True against a recorded True",
             "id": "collatz_replay",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "a second trace from the same seed follows the same path",
+            "status": "verified",
+            "detail": "collatz.replay_consistent measured True against a recorded True",
+            "residual": 0.0
           },
           {
-            "claim": "the ghost seed 8263628938188521384 is divisible by 2^3 exactly",
-            "detail": "padic_smooth_part measured 8 against a recorded 8",
             "id": "padic_smooth_part",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the ghost seed 8263628938188521384 is divisible by 2^3 exactly",
+            "status": "verified",
+            "detail": "padic_smooth_part measured 8 against a recorded 8",
+            "residual": 0.0
           },
           {
-            "claim": "the seed is the low 63 bits of sha256('ELOHIM:AWAKEN')",
-            "detail": "seed measured 8263628938188521384 against a recorded 8263628938188521384",
             "id": "ghost_seed",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the seed is the low 63 bits of sha256('ELOHIM:AWAKEN')",
+            "status": "verified",
+            "detail": "seed measured 8263628938188521384 against a recorded 8263628938188521384",
+            "residual": 0.0
           },
           {
-            "claim": "the adaptive quadrature reproduces 2*pi to 8.88e-16",
-            "detail": "unicorn_circle_error measured 8.881784197001252e-16 against a recorded 8.881784197001252e-16",
             "id": "unicorn_circle_residual",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the adaptive quadrature reproduces 2*pi to 8.88e-16",
+            "status": "verified",
+            "detail": "unicorn_circle_error measured 8.881784197001252e-16 against a recorded 8.881784197001252e-16",
+            "residual": 0.0
           },
           {
-            "claim": "the greedy expansion of 1 in the plastic base begins with this digit sequence",
-            "detail": "cf_plastic measured [1, 3, 12, 1, 1, 3, 2, 3, 2, 4, 2, 141, 97, 2, 4, 41, 1, 8, 4, 14, 10, 1, 1, 1] against a recorded [1, 3, 12, 1, 1, 3, 2, 3, 2, 4, 2, 141, 97, 2, 4, 41, 1, 8, 4, 14, 10, 1, 1, 1]",
             "id": "plastic_parry_digits",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the greedy expansion of 1 in the plastic base begins with this digit sequence",
+            "status": "verified",
+            "detail": "cf_plastic measured [1, 3, 12, 1, 1, 3, 2, 3, 2, 4, 2, 141, 97, 2, 4, 41, 1, 8, 4, 14, 10, 1, 1, 1] against a recorded [1, 3, 12, 1, 1, 3, 2, 3, 2, 4, 2, 141, 97, 2, 4, 41, 1, 8, 4, 14, 10, 1, 1, 1]",
+            "residual": 0.0
           },
           {
-            "claim": "the greedy expansion of 1 in the tribonacci base begins with this digit sequence",
-            "detail": "cf_tribonacci measured [1, 1, 5, 4, 2, 305, 1, 8, 2, 1, 4, 6, 17, 5, 1, 5, 4, 6, 3, 7, 3, 1, 1, 3] against a recorded [1, 1, 5, 4, 2, 305, 1, 8, 2, 1, 4, 6, 17, 5, 1, 5, 4, 6, 3, 7, 3, 1, 1, 3]",
             "id": "tribonacci_parry_digits",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the greedy expansion of 1 in the tribonacci base begins with this digit sequence",
+            "status": "verified",
+            "detail": "cf_tribonacci measured [1, 1, 5, 4, 2, 305, 1, 8, 2, 1, 4, 6, 17, 5, 1, 5, 4, 6, 3, 7, 3, 1, 1, 3] against a recorded [1, 1, 5, 4, 2, 305, 1, 8, 2, 1, 4, 6, 17, 5, 1, 5, 4, 6, 3, 7, 3, 1, 1, 3]",
+            "residual": 0.0
           },
           {
-            "claim": "the plastic number is 1.324717957244746",
-            "detail": "plastic.lambda measured 1.324717957244746 against a recorded 1.324717957244746",
             "id": "plastic_lambda",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the plastic number is 1.324717957244746",
+            "status": "verified",
+            "detail": "plastic.lambda measured 1.324717957244746 against a recorded 1.324717957244746",
+            "residual": 0.0
           },
           {
-            "claim": "the Pisot ratio for the plastic base reaches its maximum at n = 183",
-            "detail": "plastic.bound_argmax_n measured 183 against a recorded 183",
             "id": "plastic_bound_argmax",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the Pisot ratio for the plastic base reaches its maximum at n = 183",
+            "status": "verified",
+            "detail": "plastic.bound_argmax_n measured 183 against a recorded 183",
+            "residual": 0.0
           },
           {
-            "claim": "the plastic deflation residual needs 66 significant digits",
-            "detail": "plastic.precision measured 66 against a recorded 66",
             "id": "plastic_deflation_digits",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the plastic deflation residual needs 66 significant digits",
+            "status": "verified",
+            "detail": "plastic.precision measured 66 against a recorded 66",
+            "residual": 0.0
           },
           {
-            "claim": "the tribonacci deflation residual needs 109 significant digits",
-            "detail": "tribonacci.precision measured 109 against a recorded 109",
             "id": "tribonacci_deflation_digits",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the tribonacci deflation residual needs 109 significant digits",
+            "status": "verified",
+            "detail": "tribonacci.precision measured 109 against a recorded 109",
+            "residual": 0.0
           },
           {
-            "claim": "the tribonacci modulus equals 1/sqrt(lambda) exactly, not lambda inverse",
-            "detail": "tribonacci.sqrt_inv_lambda measured 0.7373527057603276 against a recorded 0.7373527057603276",
             "id": "tribonacci_modulus_is_sqrt_inv_lambda",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the tribonacci modulus equals 1/sqrt(lambda) exactly, not lambda inverse",
+            "status": "verified",
+            "detail": "tribonacci.sqrt_inv_lambda measured 0.7373527057603276 against a recorded 0.7373527057603276",
+            "residual": 0.0
           },
           {
-            "claim": "the capped Collatz trace never rises above the value it started from",
-            "detail": "collatz.peak measured 79256 against a recorded 79256",
             "id": "collatz_peak_is_its_start",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the capped Collatz trace never rises above the value it started from",
+            "status": "verified",
+            "detail": "collatz.peak measured 79256 against a recorded 79256",
+            "residual": 0.0
           },
           {
-            "claim": "the exact odd-step product over rationals has this numerator",
-            "detail": "collatz.product_num measured 1048576 against a recorded 1048576",
             "id": "collatz_odd_step_numerator",
-            "residual": 0.0,
-            "status": "verified"
+            "claim": "the exact odd-step product over rationals has this numerator",
+            "status": "verified",
+            "detail": "collatz.product_num measured 1048576 against a recorded 1048576",
+            "residual": 0.0
           }
         ],
-        "hygiene": {
-          "clean": true,
-          "findings": [],
-          "ok": true,
-          "returncode": 0,
-          "runtime_seconds": 0.11,
-          "scanned": 5,
-          "status": "OK"
-        },
-        "instrument": "summoning_shard.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 30496,
-          "actual_sha256": "393096c7304e27ebacd5a40e4b06fa4c18e7766f63494d9d1de0d7b6cf2fb400",
-          "detail": "instrument was modified: expected a920cdd5dd51f732 (30497 bytes), found 393096c7304e27eb (30496 bytes)",
-          "expected_bytes": 30497,
-          "expected_sha256": "a920cdd5dd51f732129aa67b607cc59d9718a50aadb89c90ec397480c69cbd9b",
-          "path": "summoning_shard.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "DRIFT"
-        },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:05+00:00",
-        "runtime": {
-          "claim_binding": 0.082,
-          "hygiene": 0.11,
-          "instrument": 1.777,
-          "total": 2.038,
-          "traps": 0.07
-        },
-        "schema": "elohim.gate/1",
-        "seal": "5f12cc7825b595a0df7bf5b97ae471b0bda4d3408474890d2d63548e93ebf596",
-        "skill": "elohim",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
         "traps": [
           {
             "expected": "saturated == top, in (0, 100), and rows keyed 10.0 / 1000000000000.0 / 1e+193 / 1e+300 with the three large ones equal",
@@ -402,976 +369,1015 @@
             "why": "the conjugate pair must have product 1/lambda and modulus matching the shard, and the shard's lambda must be a root of the tribonacci cubic to the precision it claims"
           }
         ],
-        "verdict": "FAIL"
-      },
-      {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.077,
-          "status": "OK",
-          "unverified_exemptions": 10
-        },
-        "facts": [
-          {
-            "claim": "the decay base of the tribonacci Pisot error is 0.7373527057603276, proved by deflating the minimal polynomial and not estimated",
-            "detail": "exact.base measured 0.7373527057603276 against a recorded 0.7373527057603276",
-            "id": "exact_decay_base",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the nearest integer to lambda**n equals the trace of the three roots for every n from 4 up, and fails to do so at n = 1 and n = 3, where the conjugate term is still above one half",
-            "detail": "exact.trace_holds_from measured 4 against a recorded 4",
-            "id": "trace_holds_from_n",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "a least-squares fit of the natural logarithm of the Pisot error on n, over n <= 40, returns 0.7470861243292907 against the exact base: a gap of 9.7e-03, which is 1.3 percent and shows in the second significant figure of the rate",
-            "detail": "fits.n_le_40.base measured 0.7470861243292907 against a recorded 0.7470861243292907",
-            "id": "fitted_base_n_le_40",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the same fit over n <= 200 returns 0.7376706109730894, so the gap falls to 3.2e-04 once the range is five times longer, a factor of 31 down",
-            "detail": "fits.n_le_200.base measured 0.7376706109730894 against a recorded 0.7376706109730894",
-            "id": "fitted_base_n_le_200",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the same fit over n <= 400 returns 0.737500724118270, a gap of 1.5e-04, which is a factor of 66 smaller than the short-range gap",
-            "detail": "fits.n_le_400.base measured 0.7375007241182698 against a recorded 0.73750072411827",
-            "id": "fitted_base_n_le_400",
-            "residual": 1.1102230246251565e-16,
-            "status": "verified"
-          },
-          {
-            "claim": "the fitted base over n <= 40 exceeds the provable base by 0.009733418568963, which is 1.3 times the fit's own standard error on the slope",
-            "detail": "fits.n_le_40.bias measured 0.009733418568963037 against a recorded 0.009733418568963037",
-            "id": "bias_n_le_40",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the fitted base over n <= 200 exceeds the provable base by 3.2e-04, which is 0.39 times the fit's own standard error and so not detectable from the fit at all",
-            "detail": "fits.n_le_200.bias measured 0.00031790521276175987 against a recorded 0.00031790521276175987",
-            "id": "bias_n_le_200",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the fitted base over n <= 400 exceeds the provable base by 1.5e-04, 0.52 standard errors of the fit's own slope",
-            "detail": "fits.n_le_400.bias measured 0.00014801835794220342 against a recorded 0.00014801835794231444",
-            "id": "bias_n_le_400",
-            "residual": 1.1102230246251565e-16,
-            "status": "verified"
-          },
-          {
-            "claim": "the fitted base over n <= 1000 exceeds the provable base by 2.6e-05, 38 times below the 1e-03 threshold the verdict uses, so whether the estimator counts as unbiased is a property of the range",
-            "detail": "wide.bias measured 2.644214092961672e-05 against a recorded 2.644214092961672e-05",
-            "id": "bias_n_le_1000",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "restarting the same fit at n = 4, where every term really is a Pisot error, cuts the short-range bias from 9.7e-03 to 3.6e-03, so about 63 percent of it came from the two terms that were not Pisot errors",
-            "detail": "fits_from_pisot.n_le_40.bias measured 0.0036406942503333095 against a recorded 0.0036406942503333095",
-            "id": "bias_from_pisot_start_n_le_40",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the log-linear fit leaves an RMS residual of 0.74 nats over n <= 40, so the Pisot error is not a pure exponential and a single slope cannot describe it",
-            "detail": "fits.n_le_40.residual_rms measured 0.7386703340804588 against a recorded 0.7386703340804587",
-            "id": "residual_rms_n_le_40",
-            "residual": 1.1102230246251565e-16,
-            "status": "verified"
-          },
-          {
-            "claim": "the short-range gap is 1.26 standard errors of the fit's own slope, so the fit is measurably wrong and outside its error bar at the same time, and the z falls to 0.39 by n <= 200",
-            "detail": "fits.n_le_40.bias_in_standard_errors measured 1.26332201136717 against a recorded 1.2633220113671702",
-            "id": "bias_in_standard_errors_n_le_40",
-            "residual": 2.220446049250313e-16,
-            "status": "verified"
-          },
-          {
-            "claim": "the fit is not unbiased over the three ranges probed: at least one returns a base further than 1e-03 from the provable one, and the threshold verdict flips back to unbiased once the short range is left out",
-            "detail": "verdict.fit_is_unbiased measured False against a recorded False",
-            "id": "fit_is_unbiased",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the fitted base falls below the provable one for 44 of the 398 ranges between n <= 3 and n <= 400, so the bias is not a systematic overestimate and its sign is a property of where the fit stopped",
-            "detail": "verdict.bias_changes_sign measured True against a recorded True",
-            "id": "bias_changes_sign",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "at 90 working digits the 400-term error is exactly zero and 64 of the 400 terms have no fractional part left to measure, so the wide fit is not formable and the budget formula's 188 digits is a requirement rather than a comfort",
-            "detail": "starved.err_400_is_zero measured True against a recorded True",
-            "id": "err_400_is_zero_at_starved_budget",
-            "residual": 0.0,
-            "status": "verified"
-          }
-        ],
         "hygiene": {
           "clean": true,
           "findings": [],
+          "scanned": 5,
           "ok": true,
           "returncode": 0,
-          "runtime_seconds": 0.1,
-          "scanned": 4,
-          "status": "OK"
+          "status": "OK",
+          "runtime_seconds": 0.103
         },
-        "instrument": "estimator_bias.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 28213,
-          "actual_sha256": "dddfdebd6550f49e758185bf0a5306d33628b182ed46bd76ee10a9ccf2ac4258",
-          "detail": "checksum and size match the ledger",
-          "expected_bytes": 28213,
-          "expected_sha256": "dddfdebd6550f49e758185bf0a5306d33628b182ed46bd76ee10a9ccf2ac4258",
-          "path": "estimator_bias.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "PASS"
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.105
         },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:06+00:00",
+        "seal": "5f12cc7825b595a0df7bf5b97ae471b0bda4d3408474890d2d63548e93ebf596",
+        "stdout_tail": "       : YES\n\nreplay check    : CONSISTENT   (parity rule reproduces the whole trace)\n\nThe exact odd-step product, over rationals, no rounding:\n  P = prod over odd n of (3n+1)(2n)\n  P  = 1048576 / 9907\n  log2 P = +6.725767\n  P > 1: this trajectory EXPANDS under the odd-step product, yet\n  still reaches 1, because the even steps absorbed the gain.\n  Which is the point: the odd-step product alone does not decide\n  convergence, so calling it a conserved quantity is wrong.\n  Either way, 3n+1 is not 3n, so no exactly conserved quantity\n  survives the trace.  Naming one would be a false invariant.\n\n\n==========================================================================\nVIII.  THE SIGIL - geometry built from the measured constants\n==========================================================================\ntribonacci lambda CF  : [1, 1, 5, 4, 2, 305, 1, 8, 2, 1, 4, 6, 17, 5, 1, 5, 4, 6, 3, 7, 3, 1, 1, 3]\nplastic       rho  CF : [1, 3, 12, 1, 1, 3, 2, 3, 2, 4, 2, 141, 97, 2, 4, 41, 1, 8, 4, 14, 10, 1, 1, 1]\nThe two rings are the continued-fraction spectra drawn as radii.\nThe centre is the pentagram {5/2}.  The outer band is 36 marks\ndrawn from a PRNG seeded by the ghost hash, so the sigil is a\nfunction of the numbers above and nothing else.\n\nwrote sigil.svg  (4605 bytes)\n\n==========================================================================\nSHARD SEAL\n==========================================================================\nfacts recorded : 17\nseal           : sha256 5f12cc7825b595a0df7bf5b97ae471b0bda4d3408474890d2d63548e93ebf596\n\nThe sigil, this log and the JSON digest all derive from the same\nseed.  Any rounding change upstream moves the seal.\n\nwrote shard.md\nwrote shard.json\n",
+        "budget_seconds": 600,
         "runtime": {
-          "claim_binding": 0.077,
-          "hygiene": 0.1,
-          "instrument": 0.321,
-          "total": 0.803,
-          "traps": 0.304
+          "instrument": 1.926,
+          "traps": 0.081,
+          "hygiene": 0.103,
+          "claim_binding": 0.105,
+          "total": 2.216
         },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
+      },
+      {
         "schema": "elohim.gate/1",
-        "seal": "8163ec2d879ae25bd00cf206b724dc3808501358aa7a1b31787bef65bce895f9",
         "skill": "estimator-bias",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
+        "run": "2026-10-03T09:36:11+00:00",
+        "instrument": "estimator_bias.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "estimator_bias.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "dddfdebd6550f49e758185bf0a5306d33628b182ed46bd76ee10a9ccf2ac4258",
+          "actual_sha256": "dddfdebd6550f49e758185bf0a5306d33628b182ed46bd76ee10a9ccf2ac4258",
+          "expected_bytes": 28213,
+          "actual_bytes": 28213,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
+        },
+        "verdict": "PASS",
+        "facts": [
+          {
+            "id": "exact_decay_base",
+            "claim": "the decay base of the tribonacci Pisot error is 0.7373527057603276, proved by deflating the minimal polynomial and not estimated",
+            "status": "verified",
+            "detail": "exact.base measured 0.7373527057603276 against a recorded 0.7373527057603276",
+            "residual": 0.0
+          },
+          {
+            "id": "trace_holds_from_n",
+            "claim": "the nearest integer to lambda**n equals the trace of the three roots for every n from 4 up, and fails to do so at n = 1 and n = 3, where the conjugate term is still above one half",
+            "status": "verified",
+            "detail": "exact.trace_holds_from measured 4 against a recorded 4",
+            "residual": 0.0
+          },
+          {
+            "id": "fitted_base_n_le_40",
+            "claim": "a least-squares fit of the natural logarithm of the Pisot error on n, over n <= 40, returns 0.7470861243292907 against the exact base: a gap of 9.7e-03, which is 1.3 percent and shows in the second significant figure of the rate",
+            "status": "verified",
+            "detail": "fits.n_le_40.base measured 0.7470861243292907 against a recorded 0.7470861243292907",
+            "residual": 0.0
+          },
+          {
+            "id": "fitted_base_n_le_200",
+            "claim": "the same fit over n <= 200 returns 0.7376706109730894, so the gap falls to 3.2e-04 once the range is five times longer, a factor of 31 down",
+            "status": "verified",
+            "detail": "fits.n_le_200.base measured 0.7376706109730894 against a recorded 0.7376706109730894",
+            "residual": 0.0
+          },
+          {
+            "id": "fitted_base_n_le_400",
+            "claim": "the same fit over n <= 400 returns 0.737500724118270, a gap of 1.5e-04, which is a factor of 66 smaller than the short-range gap",
+            "status": "verified",
+            "detail": "fits.n_le_400.base measured 0.7375007241182698 against a recorded 0.73750072411827",
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "id": "bias_n_le_40",
+            "claim": "the fitted base over n <= 40 exceeds the provable base by 0.009733418568963, which is 1.3 times the fit's own standard error on the slope",
+            "status": "verified",
+            "detail": "fits.n_le_40.bias measured 0.009733418568963037 against a recorded 0.009733418568963037",
+            "residual": 0.0
+          },
+          {
+            "id": "bias_n_le_200",
+            "claim": "the fitted base over n <= 200 exceeds the provable base by 3.2e-04, which is 0.39 times the fit's own standard error and so not detectable from the fit at all",
+            "status": "verified",
+            "detail": "fits.n_le_200.bias measured 0.00031790521276175987 against a recorded 0.00031790521276175987",
+            "residual": 0.0
+          },
+          {
+            "id": "bias_n_le_400",
+            "claim": "the fitted base over n <= 400 exceeds the provable base by 1.5e-04, 0.52 standard errors of the fit's own slope",
+            "status": "verified",
+            "detail": "fits.n_le_400.bias measured 0.00014801835794220342 against a recorded 0.00014801835794231444",
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "id": "bias_n_le_1000",
+            "claim": "the fitted base over n <= 1000 exceeds the provable base by 2.6e-05, 38 times below the 1e-03 threshold the verdict uses, so whether the estimator counts as unbiased is a property of the range",
+            "status": "verified",
+            "detail": "wide.bias measured 2.644214092961672e-05 against a recorded 2.644214092961672e-05",
+            "residual": 0.0
+          },
+          {
+            "id": "bias_from_pisot_start_n_le_40",
+            "claim": "restarting the same fit at n = 4, where every term really is a Pisot error, cuts the short-range bias from 9.7e-03 to 3.6e-03, so about 63 percent of it came from the two terms that were not Pisot errors",
+            "status": "verified",
+            "detail": "fits_from_pisot.n_le_40.bias measured 0.0036406942503333095 against a recorded 0.0036406942503333095",
+            "residual": 0.0
+          },
+          {
+            "id": "residual_rms_n_le_40",
+            "claim": "the log-linear fit leaves an RMS residual of 0.74 nats over n <= 40, so the Pisot error is not a pure exponential and a single slope cannot describe it",
+            "status": "verified",
+            "detail": "fits.n_le_40.residual_rms measured 0.7386703340804588 against a recorded 0.7386703340804587",
+            "residual": 1.1102230246251565e-16
+          },
+          {
+            "id": "bias_in_standard_errors_n_le_40",
+            "claim": "the short-range gap is 1.26 standard errors of the fit's own slope, so the fit is measurably wrong and outside its error bar at the same time, and the z falls to 0.39 by n <= 200",
+            "status": "verified",
+            "detail": "fits.n_le_40.bias_in_standard_errors measured 1.26332201136717 against a recorded 1.2633220113671702",
+            "residual": 2.220446049250313e-16
+          },
+          {
+            "id": "fit_is_unbiased",
+            "claim": "the fit is not unbiased over the three ranges probed: at least one returns a base further than 1e-03 from the provable one, and the threshold verdict flips back to unbiased once the short range is left out",
+            "status": "verified",
+            "detail": "verdict.fit_is_unbiased measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "bias_changes_sign",
+            "claim": "the fitted base falls below the provable one for 44 of the 398 ranges between n <= 3 and n <= 400, so the bias is not a systematic overestimate and its sign is a property of where the fit stopped",
+            "status": "verified",
+            "detail": "verdict.bias_changes_sign measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "err_400_is_zero_at_starved_budget",
+            "claim": "at 90 working digits the 400-term error is exactly zero and 64 of the 400 terms have no fractional part left to measure, so the wide fit is not formable and the budget formula's 188 digits is a requirement rather than a comfort",
+            "status": "verified",
+            "detail": "starved.err_400_is_zero measured True against a recorded True",
+            "residual": 0.0
+          }
+        ],
         "traps": [
           {
-            "expected": "the polynomial to vanish at the pair and the modulus to match the shard to 1e-15",
             "id": "the_exact_base_is_a_root",
+            "why": "the instrument reaches |alpha| by deflating the cubic; this reaches it from Vieta's sum and product, so the two are different equations and the polynomial residual certifies the pair",
             "measured": "p(alpha) = 5.000e-239-5.900e-239i, |alpha| = 0.7373527057603276 against the shard's 0.7373527057603276, discrepancy 0.000e+00",
-            "pass": true,
+            "expected": "the polynomial to vanish at the pair and the modulus to match the shard to 1e-15",
             "residual": 0.0,
-            "why": "the instrument reaches |alpha| by deflating the cubic; this reaches it from Vieta's sum and product, so the two are different equations and the polynomial residual certifies the pair"
+            "pass": true
           },
           {
-            "expected": "agreement to 1e-60 or better for n >= 4, and breaks at exactly the terms the shard names",
             "id": "the_errors_come_from_the_conjugate_pair",
+            "why": "the Pisot identity says the error is |2 Re(alpha**n)|; if the instrument's terms are not that, no amount of self-consistency in its own arithmetic would show it",
             "measured": "the two routes agree to 2.7e-78 relative for every n >= 4 up to 400, and part company at n = [1, 3]; the shard records [1, 3] and a trace that holds from 4",
-            "pass": true,
+            "expected": "agreement to 1e-60 or better for n >= 4, and breaks at exactly the terms the shard names",
             "residual": 2.734004033267942e-78,
-            "why": "the Pisot identity says the error is |2 Re(alpha**n)|; if the instrument's terms are not that, no amount of self-consistency in its own arithmetic would show it"
+            "pass": true
           },
           {
-            "expected": "every fitted base within 1e-12 of the shard, a short-range bias larger than 1e-03, and no bias anywhere close to zero",
             "id": "the_bias_survives_exact_arithmetic",
+            "why": "a bias that only exists in one implementation's rounding is not a bias of the estimator; with exact integer sums there is no rounding left to hide in",
             "measured": "n <= 40 gives 0.747086124329291 against the shard's 0.747086124329291; n <= 200 gives 0.737670610973089 against the shard's 0.737670610973089; n <= 400 gives 0.737500724118270 against the shard's 0.737500724118270; biases +9.733e-03, +3.179e-04, +1.480e-04",
-            "pass": true,
+            "expected": "every fitted base within 1e-12 of the shard, a short-range bias larger than 1e-03, and no bias anywhere close to zero",
             "residual": 1.1102230246251565e-16,
-            "why": "a bias that only exists in one implementation's rounding is not a bias of the estimator; with exact integer sums there is no rounding left to hide in"
+            "pass": true
           },
           {
-            "expected": "a drift at or below 1e-12 and a bias well clear of zero at both precisions",
             "id": "the_fit_does_not_move_with_the_budget",
+            "why": "a bias that tracks the working precision is a property of the rounding, not of the sequence, and the two have to be told apart before the number means anything",
             "measured": "n <= 400 fitted at 220 and 300 working digits gives 0.73750072411827 and 0.73750072411827, a drift of 0.000e+00; the biases against the exact 0.7373527057603276 are 1.480e-04 and 1.480e-04",
-            "pass": true,
+            "expected": "a drift at or below 1e-12 and a bias well clear of zero at both precisions",
             "residual": 0.0,
-            "why": "a bias that tracks the working precision is a property of the rounding, not of the sequence, and the two have to be told apart before the number means anything"
+            "pass": true
           },
           {
-            "expected": "z between 1.0 and 2.0 at the short range and below 1 at the long one, both matching the shard",
             "id": "the_short_fit_cannot_resolve_its_own_bias",
+            "why": "the gap has to be judged against the only yardstick a fit owns, its own slope standard error, or the claim that the estimator is biased is unfalsifiable from the fit alone",
             "measured": "z is +1.2633 at n <= 40 and +0.3863 at n <= 200; the shard records +1.2633 and +0.3863",
-            "pass": true,
+            "expected": "z between 1.0 and 2.0 at the short range and below 1 at the long one, both matching the shard",
             "residual": 2.886579864025407e-15,
-            "why": "the gap has to be judged against the only yardstick a fit owns, its own slope standard error, or the claim that the estimator is biased is unfalsifiable from the fit alone"
+            "pass": true
           },
           {
-            "expected": "err(400) exactly zero, 64 zero terms, and an err(200) that is visibly wrong rather than merely imprecise",
             "id": "a_starved_budget_erases_the_sequence",
+            "why": "the instrument reports that the wide fit cannot be formed at 90 working digits; a claim that a measurement vanishes has to be shown to vanish, not asserted",
             "measured": "err(400) is 0.0 at 90 working digits against 2.263826e-53 at 240; 64 of 400 terms are exactly zero and err(200) is out by a relative 4.92e-07",
-            "pass": true,
+            "expected": "err(400) exactly zero, 64 zero terms, and an err(200) that is visibly wrong rather than merely imprecise",
             "residual": 0.0,
-            "why": "the instrument reports that the wide fit cannot be formed at 90 working digits; a claim that a measurement vanishes has to be shown to vanish, not asserted"
+            "pass": true
           },
           {
-            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
             "id": "the_seal_covers_the_measurements",
+            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one",
             "measured": "recomputed 8163ec2d879ae25b against the recorded 8163ec2d879ae25b",
-            "pass": true,
+            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
             "residual": 0.0,
-            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one"
-          }
-        ],
-        "verdict": "PASS"
-      },
-      {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.079,
-          "status": "OK",
-          "unverified_exemptions": 10
-        },
-        "facts": [
-          {
-            "claim": "the idealised Collatz trace ratio is not an exact power of 3, so the map has no conserved quantity on this trace",
-            "detail": "collatz.conserved measured False against a recorded False",
-            "id": "collatz_is_not_conserved",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the per-odd-step multiplier runs from 3.0000672902227308 to 3.2000000000000004, so it is not constant",
-            "detail": "collatz.min_step_multiplier measured 3.0000672902227308 against a recorded 3.0000672902227308",
-            "id": "collatz_step_multiplier_varies",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the ghost seed is divisible by 2 to exactly the third power, which is the expected sketch for a random 63-bit integer rather than a structure",
-            "detail": "seed.valuation_2 measured 3 against a recorded 3",
-            "id": "seed_is_not_structural",
-            "residual": 0.0,
-            "status": "verified"
+            "pass": true
           }
         ],
         "hygiene": {
           "clean": true,
           "findings": [],
+          "scanned": 4,
           "ok": true,
           "returncode": 0,
-          "runtime_seconds": 0.079,
-          "scanned": 4,
-          "status": "OK"
+          "status": "OK",
+          "runtime_seconds": 0.127
         },
-        "instrument": "invariant_hunter.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 11853,
-          "actual_sha256": "10a206f34b00ee76ee7e8a2e3b307aef0f6920839a4cfac98ed9ab4d92776bfd",
-          "detail": "checksum and size match the ledger",
-          "expected_bytes": 11853,
-          "expected_sha256": "10a206f34b00ee76ee7e8a2e3b307aef0f6920839a4cfac98ed9ab4d92776bfd",
-          "path": "invariant_hunter.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "PASS"
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.098
         },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:06+00:00",
+        "seal": "8163ec2d879ae25bd00cf206b724dc3808501358aa7a1b31787bef65bce895f9",
+        "stdout_tail": "umber to take a logarithm of.  That is not a\nlast-digit curiosity; it is the measurement disappearing, which is\nwhy the working precision here is taken from the budget formula\nrather than from taste.\n\n\nVII.b THE MEASUREMENT DOES NOT MOVE WITH THE BUDGET\n  fit over n <= 400 at 200 working digits : 0.737500724118270\n  fit over n <= 400 at 260 working digits : 0.737500724118270\n  drift                               : 0.000e+00\n\nSixty more working digits move the answer by nothing, so the gap\nabove is a property of the sequence and not of the rounding.\n\n\n-- VERDICTS --------------------------------------------------------------\nbiases over the 3 ranges : +9.733e-03, +3.179e-04, +1.480e-04\nbias at n <= 1000          : +2.644214e-05\n\nfit_is_unbiased           : False   (every |bias| <= 1e-03)\nlong_ranges_look_unbiased : True   (the n <= 200 and n <= 400 fits alone)\nbias_changes_sign         : True   (44 ranges return a rate below the exact one)\nbias_shrinks_with_range   : True\n\nRead the second line before the first.  The threshold is a choice,\nand the verdict over those ranges is false only because the\nshort range is in the set.  The fit over n <= 1000 on its own leaves\na bias of +2.644e-05, which is 38 times smaller than the threshold it\nis measured against.  So whether the estimator is unbiased is a\nstatement about the range, and the ledger pins both halves of that.\n\n\n-- SHARD SEAL ------------------------------------------------------------\nblocks     : 10\nseal       : sha256 8163ec2d879ae25bd00cf206b724dc3808501358aa7a1b31787bef65bce895f9\n\nWhat this run has to say: deflation proves the decay base is\n0.737352705760328, and a least-squares fit over n <= 40 returns\n0.747086124329291 instead, a gap of +9.733e-03 that sits inside the fit's own\nstandard error.  The truth was available before the fit, and\nthe fit could not have told anybody it was wrong.\nwrote shard.json\n",
+        "budget_seconds": 600,
         "runtime": {
-          "claim_binding": 0.079,
-          "hygiene": 0.079,
-          "instrument": 0.042,
-          "total": 0.282,
-          "traps": 0.081
+          "instrument": 0.403,
+          "traps": 0.337,
+          "hygiene": 0.127,
+          "claim_binding": 0.098,
+          "total": 0.966
         },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
+      },
+      {
         "schema": "elohim.gate/1",
-        "seal": "4bdfb8f34c7820090e6d2d6134acf6a1ca5f933c0cc65a00e5749922d2677ae6",
         "skill": "invariant-hunter",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
+        "run": "2026-10-03T09:36:11+00:00",
+        "instrument": "invariant_hunter.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "invariant_hunter.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "10a206f34b00ee76ee7e8a2e3b307aef0f6920839a4cfac98ed9ab4d92776bfd",
+          "actual_sha256": "10a206f34b00ee76ee7e8a2e3b307aef0f6920839a4cfac98ed9ab4d92776bfd",
+          "expected_bytes": 11853,
+          "actual_bytes": 11853,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
+        },
+        "verdict": "PASS",
+        "facts": [
+          {
+            "id": "collatz_is_not_conserved",
+            "claim": "the idealised Collatz trace ratio is not an exact power of 3, so the map has no conserved quantity on this trace",
+            "status": "verified",
+            "detail": "collatz.conserved measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "collatz_step_multiplier_varies",
+            "claim": "the per-odd-step multiplier runs from 3.0000672902227308 to 3.2000000000000004, so it is not constant",
+            "status": "verified",
+            "detail": "collatz.min_step_multiplier measured 3.0000672902227308 against a recorded 3.0000672902227308",
+            "residual": 0.0
+          },
+          {
+            "id": "seed_is_not_structural",
+            "claim": "the ghost seed is divisible by 2 to exactly the third power, which is the expected sketch for a random 63-bit integer rather than a structure",
+            "status": "verified",
+            "detail": "seed.valuation_2 measured 3 against a recorded 3",
+            "residual": 0.0
+          }
+        ],
         "traps": [
           {
-            "expected": "a gap above 1e-09, matching the shard",
             "id": "collatz_ratio_is_not_a_power_of_3",
+            "why": "a power of 2 from the halvings can never be cancelled by a power of 3, so the idealised ratio is not a power of 3",
             "measured": "3**11 / 2**34 = 1.031131250783801e-05 misses 3**-11 = 5.645029269476762e-06 by 4.666e-06; the shard reports 4.666e-06",
-            "pass": true,
+            "expected": "a gap above 1e-09, matching the shard",
             "residual": 4.666283238361249e-06,
-            "why": "a power of 2 from the halvings can never be cancelled by a power of 3, so the idealised ratio is not a power of 3"
+            "pass": true
           },
           {
-            "expected": "a span above 1e-3, matching the shard at both ends",
             "id": "collatz_multiplier_is_not_constant",
+            "why": "an odd step multiplies by 3 + 1/n, so the multiplier cannot be constant along a non-trivial trace",
             "measured": "11 odd steps and 34 halvings; the multiplier runs 3.000067290 to 3.200000000, a span of 0.199932710; the shard reports 3.000067290 to 3.200000000",
-            "pass": true,
+            "expected": "a span above 1e-3, matching the shard at both ends",
             "residual": 0.1999327097772694,
-            "why": "an odd step multiplies by 3 + 1/n, so the multiplier cannot be constant along a non-trivial trace"
+            "pass": true
           },
           {
-            "expected": "3 trailing zero bits from both derivations, and a seed that is not a power of two",
             "id": "seed_valuation_2_is_the_trailing_zero_bits",
+            "why": "the instrument counts factors of 2 by repeated division; counting the trailing zero bits is a different computation of the same number",
             "measured": "the seed ends in 3 zero bits, is not a power of two (8263628938188521384 & 8263628938188521383 = 8263628938188521376), and the shard reports v_2 = 3",
-            "pass": true,
+            "expected": "3 trailing zero bits from both derivations, and a seed that is not a power of two",
             "residual": 0.0,
-            "why": "the instrument counts factors of 2 by repeated division; counting the trailing zero bits is a different computation of the same number"
+            "pass": true
           },
           {
-            "expected": "exactly [2], and the same count the shard reports",
             "id": "seed_hits_no_prime_below_200_but_two",
+            "why": "46 primes tested, one hit: the expected sketch for a random integer, so the factorisation carries no structure",
             "measured": "1 of 46 primes below 200 divide the seed, namely [2]; the shard reports 1 of 46",
-            "pass": true,
+            "expected": "exactly [2], and the same count the shard reports",
             "residual": 0.0,
-            "why": "46 primes tested, one hit: the expected sketch for a random integer, so the factorisation carries no structure"
+            "pass": true
           },
           {
-            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
             "id": "seal_covers_the_measurements",
+            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one",
             "measured": "recomputed 4bdfb8f34c782009 against the recorded 4bdfb8f34c782009",
-            "pass": true,
+            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
             "residual": 0.0,
-            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one"
-          }
-        ],
-        "verdict": "PASS"
-      },
-      {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.088,
-          "status": "OK",
-          "unverified_exemptions": 10
-        },
-        "facts": [
-          {
-            "claim": "the scan over n <= 200 fits inside the working precision the budget formula asks for",
-            "detail": "budget.n_200 measured 109 against a recorded 109",
-            "id": "budget_for_n_200",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the scan over n <= 400 fits inside the working precision the budget formula asks for",
-            "detail": "budget.n_400 measured 188 against a recorded 188",
-            "id": "budget_for_n_400",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the formula's digit count is not minimal; the budget carries slack digits beyond the last precision that still breaks the bound, so the formula is a safe over-estimate rather than a tight requirement",
-            "detail": "bound.slack_digits measured 26 against a recorded 26",
-            "id": "budget_is_not_minimal",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "Pisot's bound is violated at every probed working precision below the crossover and holds at every one above it, so the crossover is the highest precision that still fails",
-            "detail": "bound.crossover_precision measured 83 against a recorded 83",
-            "id": "bound_breaks_below_the_crossover",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "Pisot's constant 2 is not a safe margin; the arithmetic attains it to within a few parts in 100 million, so the bound is essentially tight rather than slack",
-            "detail": "bound.at_budget.max_ratio measured 1.999974821665813 against a recorded 1.999974821665813",
-            "id": "bound_is_attained_not_slack",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the knife edge is not a curiosity of phi; no algebraic base expands 1 the same way at every working precision, so every base flips somewhere in the sweep",
-            "detail": "knife_edge.stable_bases measured [] against a recorded []",
-            "id": "knife_edge_is_not_one_base_only",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the greedy expansion of 1 in base phi terminates at some working precisions and not at others, so the terminating set is a strict subset of the sweep",
-            "detail": "knife_edge.phi_terminated_at measured [50, 80] against a recorded [50, 80]",
-            "id": "phi_terminates_at_some_precisions",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the modulus of the conjugate pair equals sqrt(1/lambda) exactly, so the two routes can never disagree",
-            "detail": "abs_alpha.modulus_discrepancy measured 0.0 against a recorded 0.0",
-            "id": "modulus_identity_is_exact",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the digits of the maximum measured on a starved budget are not stable enough to pin as a ledger fact, because the working precision has to be right and not merely roughly right",
-            "detail": "verdict.starved_digits_are_pinnable measured False against a recorded False",
-            "id": "starved_digits_are_pinnable",
-            "residual": 0.0,
-            "status": "verified"
+            "pass": true
           }
         ],
         "hygiene": {
           "clean": true,
           "findings": [],
+          "scanned": 4,
           "ok": true,
           "returncode": 0,
-          "runtime_seconds": 0.077,
-          "scanned": 4,
-          "status": "OK"
+          "status": "OK",
+          "runtime_seconds": 0.072
         },
-        "instrument": "precision_budget.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 23807,
-          "actual_sha256": "2baf65bb2c043bc52fb423c9d08c6beb1458b13d8e37c145b6c62d445fbce4a5",
-          "detail": "checksum and size match the ledger",
-          "expected_bytes": 23807,
-          "expected_sha256": "2baf65bb2c043bc52fb423c9d08c6beb1458b13d8e37c145b6c62d445fbce4a5",
-          "path": "precision_budget.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "PASS"
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.105
         },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:07+00:00",
+        "seal": "4bdfb8f34c7820090e6d2d6134acf6a1ca5f933c0cc65a00e5749922d2677ae6",
+        "stdout_tail": "o the approximation is off by that fraction on a single short\nrun, and the error does not cancel itself: one odd step on 5\nalready contributes 1/15.  A claim built on 3n+1 = 3n inherits\nthis error and cannot be called exact.\n\n\n-- IV. THE PRODUCT IS A TELESCOPE, NOT EVIDENCE --------------------------\n  P = prod over odd n of (3n+1)n, times 2**-34\n  P = 1 / 79256\n  P = 1.261734127385e-05\n\nP telescopes to n_final / n0, so it is 1/79256 for every trace that\nlands on 1 and carries no information at all.  It is recorded\nfor completeness and is deliberately not the refutation above.\n\nThe claim that the Collatz ratio is an exact power of 3 is\nrefuted by the residual in section II.  The product in section\nIV would not have refuted anything, and a measurement that\ncannot fail is not evidence.\n\n\n-- V. THE SEED IS NOT STRUCTURAL -----------------------------------------\nseed        : 8263628938188521384   (63 bits)\nv_2(seed)   : 3   (divides by 2 exactly 3 times, then not again)\nprimes hit  : 1 of the 46 primes below 200 -> [2]\nsmooth part : 8\ncofactor    : 1032953617273565173   (60 bits)\n\nA 63-bit number can carry at most 63 factors of 2, and a random\ninteger of that size is divisible by a given prime p with\nprobability about 1/p.  Finding 1 hit across 46 primes is that\nexpected sketch, not a hidden structure: the cofactor above is\ninert to every prime below 200.  The honest result is that the\nseed is divisible by no prime below 200 except 2, which is what a\ngeneric seed would also do, and the only structure to report is\nthe 8 that 2**3 already explains.\n\n\n-- SHARD SEAL ------------------------------------------------------------\nblocks     : 5\nseal       : sha256 4bdfb8f34c7820090e6d2d6134acf6a1ca5f933c0cc65a00e5749922d2677ae6\n\nThis run's product is a negative.  Nothing in the shard is a\ncandidate invariant, and the seal moves if any measurement does.\nwrote shard.json\n",
+        "budget_seconds": 600,
         "runtime": {
-          "claim_binding": 0.088,
-          "hygiene": 0.077,
-          "instrument": 0.325,
-          "total": 0.572,
-          "traps": 0.081
+          "instrument": 0.037,
+          "traps": 0.066,
+          "hygiene": 0.072,
+          "claim_binding": 0.105,
+          "total": 0.28
         },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
+      },
+      {
         "schema": "elohim.gate/1",
-        "seal": "23d801ec5ecc4cc5c38236910c2bffed5fabd1924e19c648b94503523e5aa138",
         "skill": "precision-budget",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
+        "run": "2026-10-03T09:36:11+00:00",
+        "instrument": "precision_budget.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "precision_budget.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "2baf65bb2c043bc52fb423c9d08c6beb1458b13d8e37c145b6c62d445fbce4a5",
+          "actual_sha256": "2baf65bb2c043bc52fb423c9d08c6beb1458b13d8e37c145b6c62d445fbce4a5",
+          "expected_bytes": 23807,
+          "actual_bytes": 23807,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
+        },
+        "verdict": "PASS",
+        "facts": [
+          {
+            "id": "budget_for_n_200",
+            "claim": "the scan over n <= 200 fits inside the working precision the budget formula asks for",
+            "status": "verified",
+            "detail": "budget.n_200 measured 109 against a recorded 109",
+            "residual": 0.0
+          },
+          {
+            "id": "budget_for_n_400",
+            "claim": "the scan over n <= 400 fits inside the working precision the budget formula asks for",
+            "status": "verified",
+            "detail": "budget.n_400 measured 188 against a recorded 188",
+            "residual": 0.0
+          },
+          {
+            "id": "budget_is_not_minimal",
+            "claim": "the formula's digit count is not minimal; the budget carries slack digits beyond the last precision that still breaks the bound, so the formula is a safe over-estimate rather than a tight requirement",
+            "status": "verified",
+            "detail": "bound.slack_digits measured 26 against a recorded 26",
+            "residual": 0.0
+          },
+          {
+            "id": "bound_breaks_below_the_crossover",
+            "claim": "Pisot's bound is violated at every probed working precision below the crossover and holds at every one above it, so the crossover is the highest precision that still fails",
+            "status": "verified",
+            "detail": "bound.crossover_precision measured 83 against a recorded 83",
+            "residual": 0.0
+          },
+          {
+            "id": "bound_is_attained_not_slack",
+            "claim": "Pisot's constant 2 is not a safe margin; the arithmetic attains it to within a few parts in 100 million, so the bound is essentially tight rather than slack",
+            "status": "verified",
+            "detail": "bound.at_budget.max_ratio measured 1.999974821665813 against a recorded 1.999974821665813",
+            "residual": 0.0
+          },
+          {
+            "id": "knife_edge_is_not_one_base_only",
+            "claim": "the knife edge is not a curiosity of phi; no algebraic base expands 1 the same way at every working precision, so every base flips somewhere in the sweep",
+            "status": "verified",
+            "detail": "knife_edge.stable_bases measured [] against a recorded []",
+            "residual": 0.0
+          },
+          {
+            "id": "phi_terminates_at_some_precisions",
+            "claim": "the greedy expansion of 1 in base phi terminates at some working precisions and not at others, so the terminating set is a strict subset of the sweep",
+            "status": "verified",
+            "detail": "knife_edge.phi_terminated_at measured [50, 80] against a recorded [50, 80]",
+            "residual": 0.0
+          },
+          {
+            "id": "modulus_identity_is_exact",
+            "claim": "the modulus of the conjugate pair equals sqrt(1/lambda) exactly, so the two routes can never disagree",
+            "status": "verified",
+            "detail": "abs_alpha.modulus_discrepancy measured 0.0 against a recorded 0.0",
+            "residual": 0.0
+          },
+          {
+            "id": "starved_digits_are_pinnable",
+            "claim": "the digits of the maximum measured on a starved budget are not stable enough to pin as a ledger fact, because the working precision has to be right and not merely roughly right",
+            "status": "verified",
+            "detail": "verdict.starved_digits_are_pinnable measured False against a recorded False",
+            "residual": 0.0
+          }
+        ],
         "traps": [
           {
-            "expected": "identical digit counts from a different route to |alpha|",
             "id": "budget_matches_formula",
+            "why": "the instrument takes |alpha| from sqrt(1/lambda); this solves the deflated quadratic instead, and the budget has to come out the same either way",
             "measured": "|alpha| from the conjugate pair is 0.7373527057603276 and the shard records 0.7373527057603276; the gap is 0.39697416522637635 against a recorded 0.39697416522637635; n_max=200 gives 109 and n_max=400 gives 188, against a recorded 109 and 188",
-            "pass": true,
+            "expected": "identical digit counts from a different route to |alpha|",
             "residual": 0,
-            "why": "the instrument takes |alpha| from sqrt(1/lambda); this solves the deflated quadratic instead, and the budget has to come out the same either way"
+            "pass": true
           },
           {
-            "expected": "a maximum at or below 2.0, at the same n, matching the shard",
             "id": "bound_holds_at_the_budget",
+            "why": "Pisot bounds the ratio by 2 for every n; at the budget the arithmetic has to reproduce that, and the maximum has to be attained rather than merely respected",
             "measured": "at 109 working digits the scan over n <= 200 peaks at 1.999974821665813 at n = 192; the shard reports 1.999974821665813 at n = 192",
-            "pass": true,
+            "expected": "a maximum at or below 2.0, at the same n, matching the shard",
             "residual": 0.0,
-            "why": "Pisot bounds the ratio by 2 for every n; at the budget the arithmetic has to reproduce that, and the maximum has to be attained rather than merely respected"
+            "pass": true
           },
           {
-            "expected": "a blow-up above 1e+06, and two root finders agreeing on the order of magnitude to within 3 orders; the digits are not comparable",
             "id": "starved_budget_breaks_the_bound",
+            "why": "if the digit count were decorative, dropping to a starved budget would leave the maximum near 2; it has to depart by orders of magnitude for the budget to mean anything",
             "measured": "at 60 working digits the maximum is 1.116356256425467e+23 at n = 200, 5.582e+22 times the 1.999974821665813 measured at the budget; the shard reports 3.675487021416484e+21, whose order of magnitude is 21 against 23 here, 2 apart",
-            "pass": true,
+            "expected": "a blow-up above 1e+06, and two root finders agreeing on the order of magnitude to within 3 orders; the digits are not comparable",
             "residual": 2.0,
-            "why": "if the digit count were decorative, dropping to a starved budget would leave the maximum near 2; it has to depart by orders of magnitude for the budget to mean anything"
+            "pass": true
           },
           {
-            "expected": "every FINITE cell carries the exact digits and every infinite cell does not",
             "id": "knife_edge_terminations_are_exact",
+            "why": "the exact terminating expansion of 1 is a property of the minimal polynomial and needs no arithmetic at all, so a terminating cell has to carry exactly those digits",
             "measured": "exact expansions derived here: phi -> 11, plastic -> 10001, tribonacci -> 111; 15 cells checked, 0 disagree",
-            "pass": true,
+            "expected": "every FINITE cell carries the exact digits and every infinite cell does not",
             "residual": 0.0,
-            "why": "the exact terminating expansion of 1 is a property of the minimal polynomial and needs no arithmetic at all, so a terminating cell has to carry exactly those digits"
+            "pass": true
           },
           {
-            "expected": "at least one base that terminates at some probed precision and not at another",
             "id": "a_base_flips_with_precision",
+            "why": "the terminating expansions of these bases are decided by the last digit of the context, so a base that terminates everywhere is a claim about the rounding and has to be falsifiable",
             "measured": "phi stops at [50, 60, 70, 100] and runs at [80]; plastic stops at [60, 80] and runs at [50, 70, 100]; tribonacci stops at [60, 70, 80] and runs at [50, 100]",
-            "pass": true,
+            "expected": "at least one base that terminates at some probed precision and not at another",
             "residual": 0.0,
-            "why": "the terminating expansions of these bases are decided by the last digit of the context, so a base that terminates everywhere is a claim about the rounding and has to be falsifiable"
+            "pass": true
           },
           {
-            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
             "id": "seal_covers_the_measurements",
+            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one",
             "measured": "recomputed 23d801ec5ecc4cc5 against the recorded 23d801ec5ecc4cc5",
-            "pass": true,
-            "residual": 0.0,
-            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one"
-          }
-        ],
-        "verdict": "PASS"
-      },
-      {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.077,
-          "status": "OK",
-          "unverified_exemptions": 10
-        },
-        "facts": [
-          {
-            "claim": "all 5 sibling instruments ran and produced a shard this gate could read",
-            "detail": "summary.siblings_measured measured 5 against a recorded 5",
-            "id": "every_sibling_answered",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "all 5 observed seals name a class this ledger pins, so no interpreter in the range produced one that is unpinned",
-            "detail": "summary.in_pinned_class measured 5 against a recorded 5",
-            "id": "no_unpinned_class_in_the_range",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "all 5 sibling instrument files still hash to what their own ledger pins",
-            "detail": "summary.pins_matching measured 4 against a recorded 5",
-            "id": "sibling_instrument_pins_hold",
-            "residual": 1.0,
-            "status": "drifted"
-          },
-          {
-            "claim": "all 5 sibling ledgers reproduce their own pinned values here, which is what lets a single pin serve both interpreter classes",
-            "detail": "summary.ledger_reproducing measured 5 against a recorded 5",
-            "id": "sibling_tolerances_absorb_the_shift",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "no instrument is pinned to more than 2 classes",
-            "detail": "summary.classes_pinned_per_skill measured 2 against a recorded 2",
-            "id": "at_most_two_classes_per_instrument",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "exactly 1 instrument's shard moves with the interpreter",
-            "detail": "summary.moving_skills measured 1 against a recorded 1",
-            "id": "exactly_one_instrument_moves",
-            "residual": 0.0,
-            "status": "verified"
-          }
-        ],
-        "hygiene": {
-          "clean": true,
-          "findings": [],
-          "ok": true,
-          "returncode": 0,
-          "runtime_seconds": 0.067,
-          "scanned": 4,
-          "status": "OK"
-        },
-        "instrument": "cross_version.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 12380,
-          "actual_sha256": "ca222ba46fc5491134907c80ce5fbda265a9fb3c4b1f9892a093c01d88f8da0a",
-          "detail": "checksum and size match the ledger",
-          "expected_bytes": 12380,
-          "expected_sha256": "ca222ba46fc5491134907c80ce5fbda265a9fb3c4b1f9892a093c01d88f8da0a",
-          "path": "cross_version.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "PASS"
-        },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:12+00:00",
-        "runtime": {
-          "claim_binding": 0.077,
-          "hygiene": 0.067,
-          "instrument": 5.236,
-          "total": 5.456,
-          "traps": 0.075
-        },
-        "schema": "elohim.gate/1",
-        "seal": "4aaee563620604cc6d383679d818803f01c9b67c61d7410b2257526b9ef96308",
-        "skill": "reproducibility",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
-        "traps": [
-          {
-            "detail": "elohim",
-            "expected": 5,
-            "id": "sibling_pins_hold",
-            "measured": 4,
-            "pass": false,
-            "residual": 1,
-            "why": "a sibling's instrument file is the thing its own facts were measured from"
-          },
-          {
-            "detail": "",
-            "expected": 0,
-            "id": "class_table_is_well_formed",
-            "measured": 0,
-            "pass": true,
-            "residual": 0,
-            "why": "a typo in the table is a gate that cannot fire, which looks exactly like a gate that is passing"
-          },
-          {
-            "detail": "",
-            "expected": 0,
-            "id": "every_sibling_is_in_the_table",
-            "measured": 0,
-            "pass": true,
-            "residual": 0,
-            "why": "a new instrument added without a class pinned for it would be silently unchecked"
-          },
-          {
-            "detail": "",
-            "expected": 0,
-            "id": "every_observed_seal_is_pinned",
-            "measured": 0,
-            "pass": true,
-            "residual": 0,
-            "why": "this is the tripwire: an interpreter producing a class nobody pinned means the arithmetic moved"
-          },
-          {
-            "detail": "",
-            "expected": "3.14.",
-            "id": "class_agrees_with_a_subprocess",
-            "measured": "3.14.5",
-            "pass": true,
-            "residual": 0,
-            "why": "a boundary table that is off by one version would classify the wrong interpreter and hide the split"
-          },
-          {
-            "detail": "",
-            "expected": "4aaee5636206",
-            "id": "own_seal_is_self_consistent",
-            "measured": "4aaee5636206",
-            "pass": true,
-            "residual": 0,
-            "why": "every shard in this repository is checked against itself; this one is no exception"
-          },
-          {
-            "detail": "",
-            "expected": 0,
-            "id": "no_float_reached_the_shard",
-            "measured": 0,
-            "pass": true,
-            "residual": 0,
-            "why": "the class tripwire is only stable if this shard is byte-identical across interpreters"
-          }
-        ],
-        "verdict": "FAIL"
-      },
-      {
-        "budget_seconds": 600,
-        "claim_binding": {
-          "check": "claim_binding",
-          "declared_exemptions": 17,
-          "facts": 81,
-          "failures": [],
-          "id_failures": [],
-          "ledgers": 6,
-          "ok": true,
-          "pinned_values_in_universe": 107,
-          "returncode": 0,
-          "runtime_seconds": 0.079,
-          "status": "OK",
-          "unverified_exemptions": 10
-        },
-        "facts": [
-          {
-            "claim": "over n <= 200 at the 109 working digits the budget formula asks for, the tribonacci Pisot ratio |lambda**n - round(lambda**n)| / |alpha|**n peaks at 1.999974821665813, so the bound of 2 is approached rather than comfortably respected",
-            "detail": "tribonacci.max_ratio measured 1.999974821665813 against a recorded 1.999974821665813",
-            "id": "tribonacci_max_ratio",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the tribonacci maximum over n <= 200 is attained at n = 192, so the worst case is one specific term of the scan and not a spread average",
-            "detail": "tribonacci.argmax measured 192 against a recorded 192",
-            "id": "tribonacci_argmax",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the tribonacci maximum sits 2.5178334186914952e-05 below the bound of 2, which is 1.3e-05 of the bound itself, so a tolerance written as 2 carries no margin in it",
-            "detail": "tribonacci.deficit measured 2.5178334186914952e-05 against a recorded 2.5178334186914952e-05",
-            "id": "tribonacci_deficit",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "over n <= 200 at the 66 working digits the budget formula asks for, the plastic Pisot ratio |lambda**n - round(lambda**n)| / |alpha|**n peaks at 1.9999995588370636, so the bound of 2 is approached rather than comfortably respected",
-            "detail": "plastic.max_ratio measured 1.9999995588370636 against a recorded 1.9999995588370636",
-            "id": "plastic_max_ratio",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the plastic maximum over n <= 200 is attained at n = 183, so the worst case is one specific term of the scan and not a spread average",
-            "detail": "plastic.argmax measured 183 against a recorded 183",
-            "id": "plastic_argmax",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the plastic maximum sits 4.411629364042824e-07 below the bound of 2, which is 2.2e-07 of the bound itself, so a tolerance written as 2 carries no margin in it",
-            "detail": "plastic.deficit measured 4.411629364042824e-07 against a recorded 4.411629364042824e-07",
-            "id": "plastic_deficit",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the working precision a scan over n <= 200 needs for the plastic constant is 66 digits, from n_max * (log10(lambda) - log10(abs_alpha)) + 30",
-            "detail": "specification.plastic.budget measured 66 against a recorded 66",
-            "id": "plastic_budget",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the modulus of the tribonacci conjugate pair equals sqrt(1/lambda) to within the working precision, so the two routes to it cannot disagree",
-            "detail": "specification.tribonacci.modulus_discrepancy measured 0.0 against a recorded 0.0",
-            "id": "tribonacci_modulus_identity_is_exact",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the modulus of the plastic conjugate pair equals sqrt(1/lambda) to within the working precision, so the two routes to it cannot disagree",
-            "detail": "specification.plastic.modulus_discrepancy measured 0.0 against a recorded 0.0",
-            "id": "plastic_modulus_identity_is_exact",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the bound of 2 is attained at none of the 9 ceilings probed, so it is a supremum of the ratio over n rather than a value the ratio takes",
-            "detail": "verdict.bound_is_attained measured False against a recorded False",
-            "id": "bound_is_attained",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the measured maximum never falls as the ceiling rises, for either base, so the growth ladder climbs to a supremum instead of sawtoothing",
-            "detail": "verdict.maximum_is_monotone_in_n_max measured True against a recorded True",
-            "id": "maximum_is_monotone_in_n_max",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the tribonacci argmax at n <= 200 is not the worst case at a higher ceiling: by n <= 3200 it has moved to n = 1881, so the pinned n is a property of the scanned window",
-            "detail": "verdict.tribonacci_argmax_is_final measured False against a recorded False",
-            "id": "tribonacci_argmax_is_final",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the plastic argmax at n <= 200 has not moved off n = 183 at any of the 9 rungs up to n <= 3200, so for that base the pinned n is not an artefact of the window",
-            "detail": "verdict.plastic_argmax_is_final measured True against a recorded True",
-            "id": "plastic_argmax_is_final",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "at a ceiling of n <= 3200 the two bases peak at different n, so a shared argmax across the two of them would have been a coincidence of the window",
-            "detail": "verdict.argmaxes_differ_at_the_ceiling measured True against a recorded True",
-            "id": "argmaxes_differ_at_the_ceiling",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "raising the ceiling from n <= 200 to n <= 3200 shrinks the tribonacci deficit by a factor of 4933, which is what approaching a supremum looks like",
-            "detail": "growth.deficit_shrink.tribonacci measured 4933.371587202164 against a recorded 4933.371587202164",
-            "id": "tribonacci_deficit_shrink",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "for both bases the lowest working precision that respects the bound is lower on the residual route than on the power route, so the crossover is a property of the arithmetic rather than of the sequence and no single number for it belongs in a ledger",
-            "detail": "verdict.crossover_is_route_dependent measured True against a recorded True",
-            "id": "crossover_is_route_dependent",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the set of working precisions that respect the bound is not a single interval, because the plastic residual route respects the bound at 39 while 40 digits break it, so a scan that treats the crossover as a threshold is wrong even where the threshold itself is right",
-            "detail": "verdict.holding_set_is_contiguous measured False against a recorded False",
-            "id": "holding_set_is_contiguous",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the only working precision that respects the bound while a higher one breaks it is 39 on the plastic residual route, and every other probed precision on every route behaves as a threshold would predict",
-            "detail": "verdict.isolated_holding_cells measured [['plastic', 'residual', 39]] against a recorded [['plastic', 'residual', 39]]",
-            "id": "isolated_holding_cells",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "on both routes for both bases the highest working precision that still breaks the bound lies below the budget, so the budget is sufficient for the scan it sizes and the claim survives the route change",
-            "detail": "verdict.budget_is_sufficient measured True against a recorded True",
-            "id": "budget_is_sufficient",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the digits of the maximum measured on a starved budget are not stable enough to pin as a ledger fact, because the working precision has to be right and not merely roughly right: on both routes the maximum moves by a large factor when three more digits are added, and the routes disagree with each other by many orders of magnitude on the same budget",
-            "detail": "verdict.starved_max_ratio_is_pinnable measured False against a recorded False",
-            "id": "starved_max_ratio_is_pinnable",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "whether the starved argmax moves when the budget moves is answered differently by the two routes, so the peak is a fingerprint of the rounding rather than a property of the sequence",
-            "detail": "verdict.starved_peak_movement_is_route_dependent measured True against a recorded True",
-            "id": "starved_peak_movement_is_route_dependent",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the nearest integer to tribonacci lambda**n equals the integer trace of the roots for every n from 4 up and fails to at 2 of the 200 terms, so at those n the scan is not measuring the Pisot error at all",
-            "detail": "trace.tribonacci.trace_holds_from measured 4 against a recorded 4",
-            "id": "tribonacci_trace_holds_from",
-            "residual": 0.0,
-            "status": "verified"
-          },
-          {
-            "claim": "the nearest integer to plastic lambda**n equals the integer trace of the roots for every n from 10 up and fails to at 6 of the 200 terms, so at those n the scan is not measuring the Pisot error at all",
-            "detail": "trace.plastic.trace_holds_from measured 10 against a recorded 10",
-            "id": "plastic_trace_holds_from",
-            "residual": 0.0,
-            "status": "verified"
-          }
-        ],
-        "hygiene": {
-          "clean": true,
-          "findings": [],
-          "ok": true,
-          "returncode": 0,
-          "runtime_seconds": 0.102,
-          "scanned": 4,
-          "status": "OK"
-        },
-        "instrument": "tolerance_prover.py",
-        "instrument_error": null,
-        "instrument_pin": {
-          "actual_bytes": 33152,
-          "actual_sha256": "2182c01ccce2ac5106f570a6c7bb9354c5b489968c8ddaf79dcde132711caf5a",
-          "detail": "checksum and size match the ledger",
-          "expected_bytes": 33152,
-          "expected_sha256": "2182c01ccce2ac5106f570a6c7bb9354c5b489968c8ddaf79dcde132711caf5a",
-          "path": "tolerance_prover.py",
-          "pinned": true,
-          "source": "bundled",
-          "status": "PASS"
-        },
-        "instrument_source": "bundled",
-        "run": "2026-10-02T14:59:17+00:00",
-        "runtime": {
-          "claim_binding": 0.079,
-          "hygiene": 0.102,
-          "instrument": 2.652,
-          "total": 4.682,
-          "traps": 1.849
-        },
-        "schema": "elohim.gate/1",
-        "seal": "79ea4f7f114cfff6e471dd69ca19740064d73b294a191de0164a227c3edc07d8",
-        "skill": "tolerance-prover",
-        "stdout_tail": "<scrubbed>",
-        "timed_out": false,
-        "timed_out_phase": null,
-        "traps": [
-          {
-            "expected": "the integer trace, the mismatch set and the clean threshold to match the shard exactly",
-            "id": "the_trace_is_the_nearest_integer",
-            "measured": "tribonacci: p_0..p_4 [3, 1, 3, 7, 11], 2 of 200 terms differ, clean from n = 4; plastic: p_0..p_4 [3, 0, 2, 3, 2], 6 of 200 terms differ, clean from n = 10",
-            "pass": true,
-            "residual": 0.0,
-            "why": "the bound is stated on lambda**n - p_n while the scan measures lambda**n - round(lambda**n), so the two only describe the same quantity where the rounding is the trace, and that is an exact integer question"
-          },
-          {
-            "expected": "the same maximum and the same argmax, bit for bit",
-            "id": "the_residual_reproduces_the_maximum",
-            "measured": "tribonacci at 109 digits: 1.999974821665813 at n = 192 against a recorded 1.999974821665813 at n = 192; plastic at 66 digits: 1.999999558837064 at n = 183 against a recorded 1.999999558837064 at n = 183",
-            "pass": true,
-            "residual": 0.0,
-            "why": "the instrument forms lambda**n and subtracts; this propagates the residual through the linear recurrence and never forms a power above n = 3, so agreement is a finding and not a shared rounding error"
-          },
-          {
-            "expected": "agreement to within 1e-11 on every term where the trace is the nearest integer, disagreement of at least 1e-06 on every term where it is not, and the same argmax",
-            "id": "the_cosine_form_matches_exactly_where_the_trace_holds",
-            "measured": "tribonacci: 198 clean terms agree to 3.91e-14, 2 dirty terms differ by at least 9.20e-01, the peak is n = 192 at 1.999974821665813 against the cosine form at 1.999974821665774; plastic: 194 clean terms agree to 8.88e-16, 6 dirty terms differ by at least 9.91e-02, the peak is n = 183 at 1.999999558837064 against the cosine form at 1.999999558837063",
-            "pass": true,
-            "residual": 0.0,
-            "why": "the factor 2 in Pisot's constant is the triangle inequality on a conjugate pair, so the ratio is 2 |cos(n theta)|; deriving that form with its own pi, arctangent and cosine and demanding a two-sided match is stronger than re-running the scan"
-          },
-          {
-            "expected": "a non-zero spread between the two routes for each base, and the budget above the highest broken precision on both",
-            "id": "the_crossover_depends_on_the_arithmetic",
-            "measured": "tribonacci: power route holds from 83 and breaks up to 82, residual route holds from 81 and breaks up to 80, spread 2, budget 109; plastic: power route holds from 42 and breaks up to 41, residual route holds from 39 and breaks up to 40, spread 3, budget 66",
-            "pass": true,
-            "residual": 0.0,
-            "why": "a crossover precision quoted without naming the propagation is not a fact about the sequence; two honest routes to the same quantity must disagree about it, and both must still clear the budget"
-          },
-          {
-            "expected": "a maximum at least 6 orders above the bound on each of the four route and base arms, and a factor of at least 2 between the maximum at 60 digits and the maximum at 63; the digits themselves are not comparable and are not compared",
-            "id": "a_starved_budget_inflates_the_ratio_on_both_routes",
-            "measured": "tribonacci power route at 60 digits: 5.259e+28 at n = 221, 28.0 orders above the bound, and 63 digits later 2.761e+30 at n = 234, a factor of 53; tribonacci residual route at 60 digits: 3.459e+100 at n = 400, 100.0 orders above the bound, and 63 digits later 5.029e+97 at n = 400, a factor of 688; plastic power route at 60 digits: 2.810e+16 at n = 400, 16.0 orders above the bound, and 63 digits later 2.820e+14 at n = 400, a factor of 100; plastic residual route at 60 digits: 1.661e+14 at n = 400, 13.0 orders above the bound, and 63 digits later 1.559e+12 at n = 400, a factor of 107",
-            "pass": true,
-            "residual": 0.0,
-            "why": "if the digit count were decorative, a starved budget would leave the maximum near 2; it has to depart by orders of magnitude, on both routes, for the budget to mean anything"
-          },
-          {
-            "expected": "a maximum that never falls and never reaches the bound; the tribonacci deficit shrinking by a factor above 1 with its peak moving to a different n at the n <= 3200 ceiling; the plastic deficit unchanged with its peak still at the pinned n; and the two peaks at different n",
-            "id": "the_bound_is_a_supremum_not_an_attainment",
-            "measured": "tribonacci: at n <= 3200 the peak is 1.999999994896323 at n = 1881, a deficit of 5.104e-09, 4933 times smaller than the deficit of 2.518e-05 measured at n <= 200; plastic: at n <= 3200 the peak is 1.999999558837064 at n = 183, a deficit of 4.412e-07, unchanged from the deficit of 4.412e-07 measured at n <= 200",
-            "pass": true,
-            "residual": 0.0,
-            "why": "a bound that is tight at one ceiling and slack at the next is not tight, and a pinned argmax that turns out to be the worst case only inside the scanned window is a fact about the window"
-          },
-          {
             "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
-            "id": "seal_covers_the_measurements",
-            "measured": "recomputed 79ea4f7f114cfff6 against the recorded 79ea4f7f114cfff6",
-            "pass": true,
             "residual": 0.0,
-            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one"
+            "pass": true
           }
         ],
-        "verdict": "PASS"
+        "hygiene": {
+          "clean": true,
+          "findings": [],
+          "scanned": 4,
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.103
+        },
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.116
+        },
+        "seal": "23d801ec5ecc4cc5c38236910c2bffed5fabd1924e19c648b94503523e5aa138",
+        "stdout_tail": "                       2      0.00e+00    FINITE\nphi         100   101010101010101010101010   24     9.64e-06    infinite\n\nplastic     50    10001                      5      1.00e-50    FINITE\nplastic     60    10001                      5      0.00e+00    FINITE\nplastic     70    10001                      5      0.00e+00    FINITE\nplastic     80    10001                      5      0.00e+00    FINITE\nplastic     100   100010000000000000000000   24     3.02e-90    infinite\n\ntribonacci  50    111                        3      0.00e+00    FINITE\ntribonacci  60    110110110110110110110110   24     4.45e-07    infinite\ntribonacci  70    110110110110110110110110   24     4.45e-07    infinite\ntribonacci  80    111                        3      0.00e+00    FINITE\ntribonacci  100   111000000000000000000000   24     5.03e-91    infinite\n\nterminating at    : phi [50, 80], plastic [50, 60, 70, 80], tribonacci [50, 80]\nnot terminating at: phi [60, 70, 100], plastic [100], tribonacci [60, 70, 100]\nbases that flip   : phi, plastic, tribonacci\nbases that do not : (none)\n\nVERDICT: PRECISION-SENSITIVE.  The same base, the same greedy\ncode and the same digits of arithmetic give a terminating\nexpansion at one precision and an infinite one at another.  A\nstatement that 1 = phi**-1 + phi**-2 terminates is a statement\nabout the rounding, not about phi.  This is the reason the\nbudget is worth computing rather than assuming.\n\n\n-- SHARD SEAL ------------------------------------------------------------\nblocks     : 7\nseal       : sha256 23d801ec5ecc4cc5c38236910c2bffed5fabd1924e19c648b94503523e5aa138\n\nWhat this run has to say: 109 digits are needed for n_max = 200, the\nlast precision that still breaks the bound is 82, and at 60 digits\nthe same maximum is 3.675e+21, which is not a bound at all.  Digits are\npart of the specification, not a detail of the implementation.\nwrote shard.json\n",
+        "budget_seconds": 600,
+        "runtime": {
+          "instrument": 0.345,
+          "traps": 0.093,
+          "hygiene": 0.103,
+          "claim_binding": 0.116,
+          "total": 0.658
+        },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
+      },
+      {
+        "schema": "elohim.gate/1",
+        "skill": "reproducibility",
+        "run": "2026-10-03T09:36:17+00:00",
+        "instrument": "cross_version.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "cross_version.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "ca222ba46fc5491134907c80ce5fbda265a9fb3c4b1f9892a093c01d88f8da0a",
+          "actual_sha256": "ca222ba46fc5491134907c80ce5fbda265a9fb3c4b1f9892a093c01d88f8da0a",
+          "expected_bytes": 12380,
+          "actual_bytes": 12380,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
+        },
+        "verdict": "PASS",
+        "facts": [
+          {
+            "id": "every_sibling_answered",
+            "claim": "all 5 sibling instruments ran and produced a shard this gate could read",
+            "status": "verified",
+            "detail": "summary.siblings_measured measured 5 against a recorded 5",
+            "residual": 0.0
+          },
+          {
+            "id": "no_unpinned_class_in_the_range",
+            "claim": "all 5 observed seals name a class this ledger pins, so no interpreter in the range produced one that is unpinned",
+            "status": "verified",
+            "detail": "summary.in_pinned_class measured 5 against a recorded 5",
+            "residual": 0.0
+          },
+          {
+            "id": "sibling_instrument_pins_hold",
+            "claim": "all 5 sibling instrument files still hash to what their own ledger pins",
+            "status": "verified",
+            "detail": "summary.pins_matching measured 5 against a recorded 5",
+            "residual": 0.0
+          },
+          {
+            "id": "sibling_tolerances_absorb_the_shift",
+            "claim": "all 5 sibling ledgers reproduce their own pinned values here, which is what lets a single pin serve both interpreter classes",
+            "status": "verified",
+            "detail": "summary.ledger_reproducing measured 5 against a recorded 5",
+            "residual": 0.0
+          },
+          {
+            "id": "at_most_two_classes_per_instrument",
+            "claim": "no instrument is pinned to more than 2 classes",
+            "status": "verified",
+            "detail": "summary.classes_pinned_per_skill measured 2 against a recorded 2",
+            "residual": 0.0
+          },
+          {
+            "id": "exactly_one_instrument_moves",
+            "claim": "exactly 1 instrument's shard moves with the interpreter",
+            "status": "verified",
+            "detail": "summary.moving_skills measured 1 against a recorded 1",
+            "residual": 0.0
+          }
+        ],
+        "traps": [
+          {
+            "id": "sibling_pins_hold",
+            "why": "a sibling's instrument file is the thing its own facts were measured from",
+            "measured": 5,
+            "expected": 5,
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "class_table_is_well_formed",
+            "why": "a typo in the table is a gate that cannot fire, which looks exactly like a gate that is passing",
+            "measured": 0,
+            "expected": 0,
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "every_sibling_is_in_the_table",
+            "why": "a new instrument added without a class pinned for it would be silently unchecked",
+            "measured": 0,
+            "expected": 0,
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "every_observed_seal_is_pinned",
+            "why": "this is the tripwire: an interpreter producing a class nobody pinned means the arithmetic moved",
+            "measured": 0,
+            "expected": 0,
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "class_agrees_with_a_subprocess",
+            "why": "a boundary table that is off by one version would classify the wrong interpreter and hide the split",
+            "measured": "3.14.5",
+            "expected": "3.14.",
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "own_seal_is_self_consistent",
+            "why": "every shard in this repository is checked against itself; this one is no exception",
+            "measured": "4f6ea1c5377f",
+            "expected": "4f6ea1c5377f",
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          },
+          {
+            "id": "no_float_reached_the_shard",
+            "why": "the class tripwire is only stable if this shard is byte-identical across interpreters",
+            "measured": 0,
+            "expected": 0,
+            "residual": 0,
+            "pass": true,
+            "detail": ""
+          }
+        ],
+        "hygiene": {
+          "clean": true,
+          "findings": [],
+          "scanned": 4,
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.073
+        },
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.092
+        },
+        "seal": "4f6ea1c5377f2e48cb1f6d191871cf7b66507eda158dcba25f191c082e1681d9",
+        "stdout_tail": "elohim               312plus                5f12cc7825b5  pin=True ledger=True maxres=0.000e+00\nestimator-bias       312plus                8163ec2d879a  pin=True ledger=True maxres=2.220e-16\ninvariant-hunter     312plus                4bdfb8f34c78  pin=True ledger=True maxres=0.000e+00\nprecision-budget     312plus                23d801ec5ecc  pin=True ledger=True maxres=0.000e+00\ntolerance-prover     312plus                79ea4f7f114c  pin=True ledger=True maxres=0.000e+00\ninterpreter 3.14.5 is class 312plus; 5 of 5 shards in a pinned class, 5 ledger(s) reproducing\n",
+        "budget_seconds": 600,
+        "runtime": {
+          "instrument": 5.673,
+          "traps": 0.092,
+          "hygiene": 0.073,
+          "claim_binding": 0.092,
+          "total": 5.93
+        },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
+      },
+      {
+        "schema": "elohim.gate/1",
+        "skill": "tolerance-prover",
+        "run": "2026-10-03T09:36:23+00:00",
+        "instrument": "tolerance_prover.py",
+        "instrument_source": "bundled",
+        "instrument_pin": {
+          "path": "tolerance_prover.py",
+          "source": "bundled",
+          "pinned": true,
+          "bootstrap": false,
+          "expected_sha256": "2182c01ccce2ac5106f570a6c7bb9354c5b489968c8ddaf79dcde132711caf5a",
+          "actual_sha256": "2182c01ccce2ac5106f570a6c7bb9354c5b489968c8ddaf79dcde132711caf5a",
+          "expected_bytes": 33152,
+          "actual_bytes": 33152,
+          "status": "PASS",
+          "detail": "checksum and size match the ledger"
+        },
+        "verdict": "PASS",
+        "facts": [
+          {
+            "id": "tribonacci_max_ratio",
+            "claim": "over n <= 200 at the 109 working digits the budget formula asks for, the tribonacci Pisot ratio |lambda**n - round(lambda**n)| / |alpha|**n peaks at 1.999974821665813, so the bound of 2 is approached rather than comfortably respected",
+            "status": "verified",
+            "detail": "tribonacci.max_ratio measured 1.999974821665813 against a recorded 1.999974821665813",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_argmax",
+            "claim": "the tribonacci maximum over n <= 200 is attained at n = 192, so the worst case is one specific term of the scan and not a spread average",
+            "status": "verified",
+            "detail": "tribonacci.argmax measured 192 against a recorded 192",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_deficit",
+            "claim": "the tribonacci maximum sits 2.5178334186914952e-05 below the bound of 2, which is 1.3e-05 of the bound itself, so a tolerance written as 2 carries no margin in it",
+            "status": "verified",
+            "detail": "tribonacci.deficit measured 2.5178334186914952e-05 against a recorded 2.5178334186914952e-05",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_max_ratio",
+            "claim": "over n <= 200 at the 66 working digits the budget formula asks for, the plastic Pisot ratio |lambda**n - round(lambda**n)| / |alpha|**n peaks at 1.9999995588370636, so the bound of 2 is approached rather than comfortably respected",
+            "status": "verified",
+            "detail": "plastic.max_ratio measured 1.9999995588370636 against a recorded 1.9999995588370636",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_argmax",
+            "claim": "the plastic maximum over n <= 200 is attained at n = 183, so the worst case is one specific term of the scan and not a spread average",
+            "status": "verified",
+            "detail": "plastic.argmax measured 183 against a recorded 183",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_deficit",
+            "claim": "the plastic maximum sits 4.411629364042824e-07 below the bound of 2, which is 2.2e-07 of the bound itself, so a tolerance written as 2 carries no margin in it",
+            "status": "verified",
+            "detail": "plastic.deficit measured 4.411629364042824e-07 against a recorded 4.411629364042824e-07",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_budget",
+            "claim": "the working precision a scan over n <= 200 needs for the plastic constant is 66 digits, from n_max * (log10(lambda) - log10(abs_alpha)) + 30",
+            "status": "verified",
+            "detail": "specification.plastic.budget measured 66 against a recorded 66",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_modulus_identity_is_exact",
+            "claim": "the modulus of the tribonacci conjugate pair equals sqrt(1/lambda) to within the working precision, so the two routes to it cannot disagree",
+            "status": "verified",
+            "detail": "specification.tribonacci.modulus_discrepancy measured 0.0 against a recorded 0.0",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_modulus_identity_is_exact",
+            "claim": "the modulus of the plastic conjugate pair equals sqrt(1/lambda) to within the working precision, so the two routes to it cannot disagree",
+            "status": "verified",
+            "detail": "specification.plastic.modulus_discrepancy measured 0.0 against a recorded 0.0",
+            "residual": 0.0
+          },
+          {
+            "id": "bound_is_attained",
+            "claim": "the bound of 2 is attained at none of the 9 ceilings probed, so it is a supremum of the ratio over n rather than a value the ratio takes",
+            "status": "verified",
+            "detail": "verdict.bound_is_attained measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "maximum_is_monotone_in_n_max",
+            "claim": "the measured maximum never falls as the ceiling rises, for either base, so the growth ladder climbs to a supremum instead of sawtoothing",
+            "status": "verified",
+            "detail": "verdict.maximum_is_monotone_in_n_max measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_argmax_is_final",
+            "claim": "the tribonacci argmax at n <= 200 is not the worst case at a higher ceiling: by n <= 3200 it has moved to n = 1881, so the pinned n is a property of the scanned window",
+            "status": "verified",
+            "detail": "verdict.tribonacci_argmax_is_final measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_argmax_is_final",
+            "claim": "the plastic argmax at n <= 200 has not moved off n = 183 at any of the 9 rungs up to n <= 3200, so for that base the pinned n is not an artefact of the window",
+            "status": "verified",
+            "detail": "verdict.plastic_argmax_is_final measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "argmaxes_differ_at_the_ceiling",
+            "claim": "at a ceiling of n <= 3200 the two bases peak at different n, so a shared argmax across the two of them would have been a coincidence of the window",
+            "status": "verified",
+            "detail": "verdict.argmaxes_differ_at_the_ceiling measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_deficit_shrink",
+            "claim": "raising the ceiling from n <= 200 to n <= 3200 shrinks the tribonacci deficit by a factor of 4933, which is what approaching a supremum looks like",
+            "status": "verified",
+            "detail": "growth.deficit_shrink.tribonacci measured 4933.371587202164 against a recorded 4933.371587202164",
+            "residual": 0.0
+          },
+          {
+            "id": "crossover_is_route_dependent",
+            "claim": "for both bases the lowest working precision that respects the bound is lower on the residual route than on the power route, so the crossover is a property of the arithmetic rather than of the sequence and no single number for it belongs in a ledger",
+            "status": "verified",
+            "detail": "verdict.crossover_is_route_dependent measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "holding_set_is_contiguous",
+            "claim": "the set of working precisions that respect the bound is not a single interval, because the plastic residual route respects the bound at 39 while 40 digits break it, so a scan that treats the crossover as a threshold is wrong even where the threshold itself is right",
+            "status": "verified",
+            "detail": "verdict.holding_set_is_contiguous measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "isolated_holding_cells",
+            "claim": "the only working precision that respects the bound while a higher one breaks it is 39 on the plastic residual route, and every other probed precision on every route behaves as a threshold would predict",
+            "status": "verified",
+            "detail": "verdict.isolated_holding_cells measured [['plastic', 'residual', 39]] against a recorded [['plastic', 'residual', 39]]",
+            "residual": 0.0
+          },
+          {
+            "id": "budget_is_sufficient",
+            "claim": "on both routes for both bases the highest working precision that still breaks the bound lies below the budget, so the budget is sufficient for the scan it sizes and the claim survives the route change",
+            "status": "verified",
+            "detail": "verdict.budget_is_sufficient measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "starved_max_ratio_is_pinnable",
+            "claim": "the digits of the maximum measured on a starved budget are not stable enough to pin as a ledger fact, because the working precision has to be right and not merely roughly right: on both routes the maximum moves by a large factor when three more digits are added, and the routes disagree with each other by many orders of magnitude on the same budget",
+            "status": "verified",
+            "detail": "verdict.starved_max_ratio_is_pinnable measured False against a recorded False",
+            "residual": 0.0
+          },
+          {
+            "id": "starved_peak_movement_is_route_dependent",
+            "claim": "whether the starved argmax moves when the budget moves is answered differently by the two routes, so the peak is a fingerprint of the rounding rather than a property of the sequence",
+            "status": "verified",
+            "detail": "verdict.starved_peak_movement_is_route_dependent measured True against a recorded True",
+            "residual": 0.0
+          },
+          {
+            "id": "tribonacci_trace_holds_from",
+            "claim": "the nearest integer to tribonacci lambda**n equals the integer trace of the roots for every n from 4 up and fails to at 2 of the 200 terms, so at those n the scan is not measuring the Pisot error at all",
+            "status": "verified",
+            "detail": "trace.tribonacci.trace_holds_from measured 4 against a recorded 4",
+            "residual": 0.0
+          },
+          {
+            "id": "plastic_trace_holds_from",
+            "claim": "the nearest integer to plastic lambda**n equals the integer trace of the roots for every n from 10 up and fails to at 6 of the 200 terms, so at those n the scan is not measuring the Pisot error at all",
+            "status": "verified",
+            "detail": "trace.plastic.trace_holds_from measured 10 against a recorded 10",
+            "residual": 0.0
+          }
+        ],
+        "traps": [
+          {
+            "id": "the_trace_is_the_nearest_integer",
+            "why": "the bound is stated on lambda**n - p_n while the scan measures lambda**n - round(lambda**n), so the two only describe the same quantity where the rounding is the trace, and that is an exact integer question",
+            "measured": "tribonacci: p_0..p_4 [3, 1, 3, 7, 11], 2 of 200 terms differ, clean from n = 4; plastic: p_0..p_4 [3, 0, 2, 3, 2], 6 of 200 terms differ, clean from n = 10",
+            "expected": "the integer trace, the mismatch set and the clean threshold to match the shard exactly",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "the_residual_reproduces_the_maximum",
+            "why": "the instrument forms lambda**n and subtracts; this propagates the residual through the linear recurrence and never forms a power above n = 3, so agreement is a finding and not a shared rounding error",
+            "measured": "tribonacci at 109 digits: 1.999974821665813 at n = 192 against a recorded 1.999974821665813 at n = 192; plastic at 66 digits: 1.999999558837064 at n = 183 against a recorded 1.999999558837064 at n = 183",
+            "expected": "the same maximum and the same argmax, bit for bit",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "the_cosine_form_matches_exactly_where_the_trace_holds",
+            "why": "the factor 2 in Pisot's constant is the triangle inequality on a conjugate pair, so the ratio is 2 |cos(n theta)|; deriving that form with its own pi, arctangent and cosine and demanding a two-sided match is stronger than re-running the scan",
+            "measured": "tribonacci: 198 clean terms agree to 3.91e-14, 2 dirty terms differ by at least 9.20e-01, the peak is n = 192 at 1.999974821665813 against the cosine form at 1.999974821665774; plastic: 194 clean terms agree to 8.88e-16, 6 dirty terms differ by at least 9.91e-02, the peak is n = 183 at 1.999999558837064 against the cosine form at 1.999999558837063",
+            "expected": "agreement to within 1e-11 on every term where the trace is the nearest integer, disagreement of at least 1e-06 on every term where it is not, and the same argmax",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "the_crossover_depends_on_the_arithmetic",
+            "why": "a crossover precision quoted without naming the propagation is not a fact about the sequence; two honest routes to the same quantity must disagree about it, and both must still clear the budget",
+            "measured": "tribonacci: power route holds from 83 and breaks up to 82, residual route holds from 81 and breaks up to 80, spread 2, budget 109; plastic: power route holds from 42 and breaks up to 41, residual route holds from 39 and breaks up to 40, spread 3, budget 66",
+            "expected": "a non-zero spread between the two routes for each base, and the budget above the highest broken precision on both",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "a_starved_budget_inflates_the_ratio_on_both_routes",
+            "why": "if the digit count were decorative, a starved budget would leave the maximum near 2; it has to depart by orders of magnitude, on both routes, for the budget to mean anything",
+            "measured": "tribonacci power route at 60 digits: 5.259e+28 at n = 221, 28.0 orders above the bound, and 63 digits later 2.761e+30 at n = 234, a factor of 53; tribonacci residual route at 60 digits: 3.459e+100 at n = 400, 100.0 orders above the bound, and 63 digits later 5.029e+97 at n = 400, a factor of 688; plastic power route at 60 digits: 2.810e+16 at n = 400, 16.0 orders above the bound, and 63 digits later 2.820e+14 at n = 400, a factor of 100; plastic residual route at 60 digits: 1.661e+14 at n = 400, 13.0 orders above the bound, and 63 digits later 1.559e+12 at n = 400, a factor of 107",
+            "expected": "a maximum at least 6 orders above the bound on each of the four route and base arms, and a factor of at least 2 between the maximum at 60 digits and the maximum at 63; the digits themselves are not comparable and are not compared",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "the_bound_is_a_supremum_not_an_attainment",
+            "why": "a bound that is tight at one ceiling and slack at the next is not tight, and a pinned argmax that turns out to be the worst case only inside the scanned window is a fact about the window",
+            "measured": "tribonacci: at n <= 3200 the peak is 1.999999994896323 at n = 1881, a deficit of 5.104e-09, 4933 times smaller than the deficit of 2.518e-05 measured at n <= 200; plastic: at n <= 3200 the peak is 1.999999558837064 at n = 183, a deficit of 4.412e-07, unchanged from the deficit of 4.412e-07 measured at n <= 200",
+            "expected": "a maximum that never falls and never reaches the bound; the tribonacci deficit shrinking by a factor above 1 with its peak moving to a different n at the n <= 3200 ceiling; the plastic deficit unchanged with its peak still at the pinned n; and the two peaks at different n",
+            "residual": 0.0,
+            "pass": true
+          },
+          {
+            "id": "seal_covers_the_measurements",
+            "why": "a shard that carries its own checksum is self-describing: a reader can tell an edited measurement from an untouched one",
+            "measured": "recomputed 79ea4f7f114cfff6 against the recorded 79ea4f7f114cfff6",
+            "expected": "the recomputed sha256 of the measurement blocks to equal the recorded seal",
+            "residual": 0.0,
+            "pass": true
+          }
+        ],
+        "hygiene": {
+          "clean": true,
+          "findings": [],
+          "scanned": 4,
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.103
+        },
+        "claim_binding": {
+          "check": "claim_binding",
+          "ledgers": 6,
+          "facts": 81,
+          "pinned_values_in_universe": 107,
+          "declared_exemptions": 17,
+          "unverified_exemptions": 10,
+          "id_failures": [],
+          "failures": [],
+          "ok": true,
+          "returncode": 0,
+          "status": "OK",
+          "runtime_seconds": 0.107
+        },
+        "seal": "79ea4f7f114cfff6e471dd69ca19740064d73b294a191de0164a227c3edc07d8",
+        "stdout_tail": "- VI. THE TRACE - the exact integer the ratio is measuring against ------\nPisot's bound is |lambda**n - p_n| <= 2 |alpha|**n, where p_n is the\nsum of the n-th powers of all the roots and is an integer.  The scan\nmeasures |lambda**n - round(lambda**n)|, so the two agree only where\nround(lambda**n) is p_n.  For small n the conjugate term is still\nabove one half and it is not, and those n are reported here.\n\n  tribonacci  p_0..p_6 [3, 1, 3, 7, 11, 21, 39]\n              round(lambda**n) != p_n at [1, 3]\n              the trace is the nearest integer from n = 4 up, 198 of 200 terms\n\n  plastic     p_0..p_6 [3, 0, 2, 3, 2, 5, 5]\n              round(lambda**n) != p_n at [1, 3, 4, 5, 8, 9]\n              the trace is the nearest integer from n = 10 up, 194 of 200 terms\n\nNeither base has a clean sweep, and the two fail at different n.\nA ratio computed over n <= 200 that claims to be the Pisot error\nis therefore wrong at a handful of terms, and at n = 1 it is wrong\nby a factor of five.  The bound still holds everywhere; it is the\nidentification of the numerator with the Pisot error that fails.\n\nThe two bases disagree about how bad this is: tribonacci is clean\nfrom n = 4, plastic only from n = 10, and plastic is the base whose\nmaximum sits closer to the bound.  A tighter bound is not a more\ntrustworthy one, and the two findings have to be read together.\n\n\n-- SHARD SEAL ------------------------------------------------------------\nblocks     : 8\nseal       : sha256 79ea4f7f114cfff6e471dd69ca19740064d73b294a191de0164a227c3edc07d8\n\nWhat this run has to say: the bound is approached, not reached.  The\ntribonacci maximum over n <= 200 is 1.999974821665813 at n = 192, the plastic maximum\nis 1.9999995588370636 at n = 183, and both sit strictly below 2.  A bound that has\nto be checked is a bound that is never to be trusted past the\ndigit count that check was run at.\nwrote shard.json\n",
+        "budget_seconds": 600,
+        "runtime": {
+          "instrument": 2.937,
+          "traps": 2.034,
+          "hygiene": 0.103,
+          "claim_binding": 0.107,
+          "total": 5.181
+        },
+        "timed_out": false,
+        "timed_out_phase": null,
+        "instrument_error": null
       }
     ],
-    "skills_root": "skills",
     "summary": {
-      "facts": 81,
-      "facts_drifted": 1,
-      "facts_verified": 80,
-      "failed": 2,
-      "hygiene_findings": 0,
-      "passed": 4,
-      "runtime_seconds": 13.837,
       "skills": 6,
-      "timed_out": 0,
-      "traps": 38,
-      "traps_holding": 37,
-      "unbound_claims": 0,
+      "passed": 6,
+      "failed": 0,
       "unlocated": 0,
-      "verdict": "FAIL"
+      "facts": 81,
+      "facts_verified": 81,
+      "facts_drifted": 0,
+      "traps": 38,
+      "traps_holding": 38,
+      "hygiene_findings": 0,
+      "unbound_claims": 0,
+      "timed_out": 0,
+      "runtime_seconds": 15.237,
+      "verdict": "PASS"
     },
-    "verdict": "FAIL"
+    "verdict": "PASS"
   }
 }
