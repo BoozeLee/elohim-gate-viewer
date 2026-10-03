@@ -14,12 +14,17 @@ name: Rust tests
 # here says the logic compiles and the tests pass -- nothing about whether a
 # release artifact would install.
 #
-# Status: written against a local run of the same commands, not against a green
-# Actions run. Every `cargo` step here has been executed by hand at the command
-# level, including the ignored-count assertion, but the apt step has never run on
-# a runner that did not already have these libraries. The first push will tell us
-# whether the package names resolve; until it does, this file is a claim under
-# test rather than a passing gate, and the changelog says so.
+# Status: green on a real runner. Actions run 37085312552, on the commit that added
+# this file, executed every step below on a clean ubuntu-latest: `apt-get install`
+# resolved all eight package names (the log shows `Setting up
+# libwebkit2gtk-4.1-dev (2.52.6-0ubuntu0.24.04.1)`), the leak grep passed, and
+# `cargo test` reported 16 + 0 + 6 + 1 passed with 1 ignored, which is the 23 the
+# README quotes. The ignored-count assertion at the end printed exactly 1. Re-derive
+# with `gh run list --branch main` and `gh run view <id> --log`.
+#
+# What a green run still does not cover is written down rather than implied by this
+# file's existence: the ignored test needs a real gate behind it, so it stays
+# ignored here and runs only under `npm run test:gate` with ELOHIM_GATE_CMD set.
 
 on:
   push:

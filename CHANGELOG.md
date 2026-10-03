@@ -170,14 +170,23 @@ a transitive binding is the worse trade, so it stays open and is written down.
 Exposure is small but not zero: the unsound code is a Rust-side iterator over GLib
 variants, and nothing in this app references `glib` or any `Variant` type.
 
-**The Rust workflow has never run on a runner.** Every `cargo` step in it was
-executed by hand, at the command level, on the tree that added it. The
-`apt-get install` step has not, because this machine already has Tauri's Linux
-build dependencies — so whether those eight package names resolve on a clean
-runner is untested. They were copied verbatim from Tauri's v2 prerequisites
-rather than assembled from memory, because an unresolvable name fails the job
-with "Unable to locate package", which names neither the package nor the file.
-The first push settles it either way.
+**The Rust workflow has run on a real runner, and it went green.** Actions run
+37085312552, on the commit that added the file, executed every step on a clean
+`ubuntu-latest`. The `apt-get install` step resolved all eight package names —
+the log shows `Setting up libwebkit2gtk-4.1-dev (2.52.6-0ubuntu0.24.04.1)` — which
+was the open question, because those names were copied verbatim from Tauri's v2
+prerequisites rather than assembled from memory, and an unresolvable one fails the
+job with "Unable to locate package", naming neither the package nor the file. The
+leak grep passed, `cargo test` reported 23 passed and 1 ignored, and the
+ignored-count assertion at the end of the job printed exactly `1`. Re-derive with
+`gh run list --branch main`, then `gh run view <id> --log`.
+
+An earlier draft of this entry said the workflow had never run on a runner and that
+the first push would settle it. It said so because the claim was true when written,
+and the push settled it the way the entry predicted. What a green run does not
+cover is still true and is unchanged: the ignored test needs a real gate behind it,
+so it stays ignored here and runs only under `npm run test:gate` with
+`ELOHIM_GATE_CMD` set.
 
 **That workflow had a defect on its first draft, and only measurement found it.**
 Its two `cargo` steps reached for the crate differently, and the one written
